@@ -20,7 +20,6 @@ Given two integer arrays nums1 and nums2, return ar1 array of their intersection
 
 */
 
-
 vector<int> intersection1(vector<int> &ar1, vector<int> &ar2)
 {
     vector<int> ans;
@@ -51,8 +50,8 @@ vector<int> intersection2(vector<int> &ar1, vector<int> &ar2)
 {
     vector<int> ans;
 
-    sort(ar1.begin(), ar1.end());
-    sort(ar2.begin(), ar2.end());
+    sort(ar1.begin(), ar1.end()); // nlogn
+    sort(ar2.begin(), ar2.end()); // mlogm
 
     int n = ar1.size(), m = ar2.size();
     int i = 0, j = 0;

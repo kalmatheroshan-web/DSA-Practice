@@ -39,5 +39,9 @@ int main()
     // Exponential function (e^x)
     cout << "exp(2) = " << exp(2) << endl;
 
+    // min max from two number
+    cout << max(10, 30) << endl;
+    cout << min(10, 30) << endl;
+
     return 0;
 }

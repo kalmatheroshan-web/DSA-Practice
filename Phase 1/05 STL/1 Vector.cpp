@@ -133,10 +133,10 @@ int main()
     cout << vacc.size() << endl;
 
     // insert
-    vector<int> vr = {2, 3, 5};
-    vr.insert(vr.begin() + 2, 10);
-    for (auto ele : vr)
-        cout << ele << endl;
+        vector<int> vr = {2, 3, 5};
+        vr.insert(vr.begin() + 2, 10);
+        for (auto ele : vr)
+            cout << ele << endl;
 
     return 0;
 }

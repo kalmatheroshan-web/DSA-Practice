@@ -14,6 +14,7 @@ struct student
     char grade;
 };
 
+// padding
 class intro
 {
 public:
@@ -34,5 +35,6 @@ int main()
     // cout << rohan.grade << endl;
     // cout << rohan.age << endl;
 
+    intro mohan = {"Roshan", 203, 'a', 123.12, 'A'};
     cout << sizeof(intro) << endl;
 }

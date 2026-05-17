@@ -23,22 +23,31 @@ struct check
     int in;
 };
 
-// Packed struct (no padding)
-#pragma pack(push, 1) // force packing,
 
-// 1-byte alignment
-struct Packed
+// Packed struct (no padding)
+#pragma pack(push,1);
+
+struct A
 {
-    char a; // 1 byte
-    int b;  // 4 bytes
-    char c; // 1 byte
+    char c;
+    double i;
+    char d;
+};
+
+#pragma pack(pop)
+
+struct B
+{
+    char c;
+    int i;
 };
 
 int main()
 {
 
     cout << "Size of Normal struct (with padding): " << sizeof(Normal) << " bytes\n";
-    cout << "Size of Packed struct (no padding): " << sizeof(Packed) << " bytes\n";
+    cout << "Size of Packed struct (no padding): " << sizeof(A) << " bytes\n";
+    cout << "Size of Packed struct (no padding): " << sizeof(B) << " bytes\n";
 
     cout << "Size of check " << sizeof(check) << endl;
 

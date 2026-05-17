@@ -2,7 +2,6 @@
 using namespace std;
 /*
     By defualt all the member and function are private
-    
 */
 
 

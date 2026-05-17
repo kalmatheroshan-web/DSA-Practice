@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 
-
 int main()
 {
     pair<int, string> p = {1, "Roshan"};

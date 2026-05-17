@@ -7,7 +7,7 @@ int main()
     int b = 200;
 
     // makes value only readable
-    const int *p = &a;
+    const int *p = &a; // int const *p will be behave same
 
     // *p = 100;  //error
     // pointer can be change but value can't

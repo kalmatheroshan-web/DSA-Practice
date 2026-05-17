@@ -46,11 +46,14 @@ int majorityElement2(vector<int> &ar)
 
 /*
     Boyer–Moore Voting Algorithm
+    time O(N) space O(1)
 */
 int majorityElement3(vector<int> &ar)
 {
     int n = ar.size();
     int count = 0, ele = 0;
+
+    // ar = {1, 4, 2, 4, 4, 3, 8};
 
     // Moore voting
     for (int i = 0; i < n; i++)
@@ -85,7 +88,7 @@ int majorityElement3(vector<int> &ar)
 int main()
 {
 
-    vector<int> ar = {1, 4, 2, 4, 4, 3, 8};
+    vector<int> ar = {1, 4, 2, 4, 4, 3, 3, 8};
     int major = majorityElement3(ar);
 
     cout << "Majority Element is " << major << endl;

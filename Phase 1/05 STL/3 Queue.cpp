@@ -11,6 +11,8 @@ int main()
     q.push(4);
     q.push(3);
 
+    q.pop();
+
     cout << q.size() << endl;
     cout << "front " << q.front() << endl;
     cout << "back " << q.back() << endl;
@@ -42,7 +44,7 @@ int main()
     list<int> li;
     li.push_back(10);
     li.push_back(20);
-    li.push_back(30);
+    li.push_front(30);
     cout << li.front() << endl;
     cout << li.back() << endl;
     li.remove(30);

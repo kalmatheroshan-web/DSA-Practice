@@ -2,7 +2,6 @@
 using namespace std;
 /*
     array always stored in contiguous location
-
 */
 
 // Print in row major

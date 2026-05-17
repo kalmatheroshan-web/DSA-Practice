@@ -23,11 +23,9 @@ int main()
         in vector , string
 
             vector<int> v;
-            string s;
 
             v != &v[0]
-            s != &s[0]
 
-            v , s represents entire object
+            v  represents entire object
     */
 }
