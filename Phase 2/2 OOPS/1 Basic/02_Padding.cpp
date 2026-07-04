@@ -34,7 +34,7 @@ struct A
     char d;
 };
 
-#pragma pack(pop)
+#pragma pack(pop); // restores previous packing setting/value
 
 struct B
 {

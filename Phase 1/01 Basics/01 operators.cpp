@@ -18,7 +18,7 @@ int main()
      c = a / b;
      cout << "div val " << c << endl;
 
-     // %n => alway bring resultant number into 0 to n-1
+     // %n => alway bring resultant number into   
      cout << endl;
      cout << "53 % 3 : " << 53 % 3 << endl;
      cout << "2 % -5 : " << 2 % -5 << endl;
@@ -49,9 +49,9 @@ int main()
           << endl
           << endl;
 
-     // logical return 0 or 1
+     // logical return 0 or 1 
      /*
-       && , ||
+       && , || , !
      */
 
      int val = 1;

@@ -12,7 +12,7 @@ int main()
     // Power
     cout << "pow(2, 3) = " << pow(2, 3) << endl;
 
-    // Absolute value
+    // Absolute value |-a| = a
     cout << "abs(-10) = " << abs(-10) << endl;
 
     // Ceiling (round up)

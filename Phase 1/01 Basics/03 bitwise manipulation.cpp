@@ -111,6 +111,15 @@ int main()
     // cout << "set the number of " << bit << "th bit" << endl;
     // cout << "after num : " << num << endl;
 
+    // Combine Flags
+    const int READ = 1 << 0;
+    const int WRITE = 1 << 1;
+    const int EXECUTE = 1 << 2;
+    const int DELETE = 1 << 3;
+
+    int permission = READ | WRITE;
+
+    cout << permission << endl;
     // ********** NOT **********
     // int num = 16;
     // num = ~num; // -(n+1)
@@ -185,5 +194,134 @@ int main()
 
     cout << "ceil value " << val << endl;
 
+    /*
+        sum without +
+        minus without -
+
+    */
+
+    /*
+      mask creation
+        0xAAAAAAAA --- 10101010...
+        0x55555555 --- 01010101...
+
+    */
+
+    int k = 4;
+    int mask = ~((1 << k) - 1); // 11110000
+
+    mask = -1; // 11111111111111111111111111111111
+
+    // Bits L to R Set
+    int L = 2;
+    int R = 5;
+
+    mask = ((1 << (R - L + 1)) - 1) << L; // 00111100
+
+    // Lowest Set Bit Mask
+    int n = 10110000;
+    mask = n & (-n); // 00010000
+
+    int rightmostPosition(int n);
+
     return 0;
 }
+
+int rightmostPosition(int n)
+{
+    if (n & 1)
+        return 1;
+
+    if (n & (n - 1) == 0)
+        return log2(n) + 1;
+
+    return log2(n & -n) + 1;
+}
+/*
+Bit Manipulation (C++)
+ref : https://www.techiedelight.com/bit-hacks-part-5-find-absolute-value-integer-without-branching/
+├── 1. Binary Basics
+│   ├── Decimal ↔ Binary
+│   ├── Bit Positions
+│   ├── Left Shift (<<)
+│   ├── Right Shift (>>)
+│   └── Powers of Two
+│
+├── 2. AND (&)
+│   ├── Check Even/Odd
+│   ├── Check ith Bit
+│   ├── Clear ith Bit
+│   ├── Clear Last Set Bit
+│   ├── Power of 2
+│   ├── Count Set Bits
+│   ├── Extract Lowest Set Bit
+│   ├── Rightmost Set Bit Position
+│   ├── Power of 4
+│   └── Check Single Set Bit
+│
+├── 3. OR (|)
+│   ├── Set ith Bit
+│   ├── Set Multiple Bits
+│   ├── Combine Flags
+│   ├── Permission System
+│   └── Turn ON Rightmost Zero Bit
+│
+├── 4. XOR (^)
+│   ├── Toggle ith Bit
+│   ├── Toggle Last Bit
+│   ├── Find Unique Number
+│   ├── Find Missing Number
+│   ├── Swap Numbers
+│   ├── XOR from 1 to N
+│   ├── XOR in Range [L,R]
+│   └── Check Opposite Signs
+│
+├── 5. NOT (~)
+│   ├── Complement
+│   ├── -(n+1)
+│   └── Flip All Bits
+│
+├── 6. Shift Operators
+│   ├── Multiply by 2^k
+│   ├── Divide by 2^k
+│   ├── Fast Multiplication
+│   └── Fast Division
+│
+├── 7. Useful Tricks
+│   ├── Print Binary
+│   ├── Binary of Negative Numbers
+│   ├── Absolute Value
+│   ├── Ceil Division
+│   ├── Sum without +
+│   ├── Subtraction without -
+│   ├── Binary Search Mid Overflow Trick
+│   └── Mask Creation
+│
+├── 8. STL Built-ins
+│   ├── __builtin_popcount()
+│   ├── __builtin_popcountll()
+│   ├── __builtin_clz()
+│   ├── __builtin_ctz()
+│   ├── __builtin_parity()
+│   └── bitset<32>
+│
+├── 9. Interview Problems
+│   ├── Single Number
+│   ├── Two Unique Numbers
+│   ├── Missing Number
+│   ├── Subsets using Bits
+│   ├── Gray Code
+│   ├── Maximum XOR Pair
+│   ├── Bitmask DP Basics
+│   └── N-Queens Bitmask
+│
+└── 10. Complexity Summary
+    ├── Check Bit → O(1)
+    ├── Set Bit → O(1)
+    ├── Clear Bit → O(1)
+    ├── Toggle Bit → O(1)
+    ├── XOR Range → O(1)
+    ├── Power of 2 → O(1)
+    ├── Count Bits (loop) → O(number of set bits)
+    └── __builtin_popcount → O(1) (hardware optimized)
+*/

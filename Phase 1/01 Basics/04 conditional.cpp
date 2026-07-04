@@ -41,8 +41,7 @@ int main()
 
     // diffrent way
     // if (value > 0)
-    //     cout
-    //         << "Number is Positive" << endl;
+    //     cout<< "Number is Positive" << endl;
     // else
     // {
     //     if (value < 0)

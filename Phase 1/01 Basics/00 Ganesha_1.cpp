@@ -46,8 +46,8 @@ int main()
 
   bool b = true;
   cout << b << endl;
-  cout << true << endl;
-  cout << false << endl;
+  cout << true << endl;  // 1
+  cout << false << endl; // 0
 
   char c = 'a';
   cout << "value " << c << endl;

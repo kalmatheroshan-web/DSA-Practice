@@ -4,7 +4,6 @@ using namespace std;
 // time O(min(a, b))
 int gcd1(int a, int b)
 {
-    // code here
     int ans = 1;
 
     int i = 2;
