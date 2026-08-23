@@ -11,6 +11,10 @@ using namespace std;
 
     0       l-1 l     m-1 m             h h+1            n-1
    [ 0 0 0 0 0  | 1 1 1  | (0/1/2) unknown | 2 2 2 2 2 2 ]
+
+   0       l-1 l     m-1 m              h h+1            n-1
+   [ 0 0 0 0 0  | 1 1 1  | 0 1 2 2 0 2 2 1 | 2 2 2 2 2 2 ]
+
 */
 
 void sort_012(vector<int> &ar)

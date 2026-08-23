@@ -30,14 +30,14 @@ int main()
     cout << "cos(45 degrees) = " << cos(radians) << endl;
     cout << "tan(45 degrees) = " << tan(radians) << endl;
 
+    // Exponential function (e^x)
+    cout << "exp(2) = " << exp(2) << endl;
+
     // Natural logarithm (base e)
     cout << "log(" << x << ") = " << log(x) << endl;
 
     // Logarithm base 10
     cout << "log10(" << x << ") = " << log10(x) << endl;
-
-    // Exponential function (e^x)
-    cout << "exp(2) = " << exp(2) << endl;
 
     // min max from two number
     cout << max(10, 30) << endl;

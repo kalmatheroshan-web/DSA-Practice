@@ -23,6 +23,12 @@ int xor_n(int n)
         return 0;
 }
 
+int abosule(int num)
+{
+    int const mask = (num >> (sizeof(int) * 8 - 1));
+    return (num + mask) ^ mask;
+}
+
 int main()
 {
     // ****************** AND & ******************
@@ -237,6 +243,33 @@ int rightmostPosition(int n)
 
     return log2(n & -n) + 1;
 }
+
+// sum without + operator
+int sum(int a, int b)
+{
+    while (b)
+    {
+        int carry = a & b;
+        a = a ^ b;
+        b = carry << 1;
+    }
+
+    return a;
+}
+
+// subtraction without - operator
+int menu(int a, int b)
+{
+    while (b)
+    {
+        int borrow = (~a) & b;
+        a = a ^ b;
+        b = borrow << 1;
+    }
+
+    return a;
+}
+
 /*
 Bit Manipulation (C++)
 ref : https://www.techiedelight.com/bit-hacks-part-5-find-absolute-value-integer-without-branching/
@@ -253,10 +286,10 @@ ref : https://www.techiedelight.com/bit-hacks-part-5-find-absolute-value-integer
 │   ├── Clear ith Bit
 │   ├── Clear Last Set Bit
 │   ├── Power of 2
+│   ├── Power of 4
 │   ├── Count Set Bits
 │   ├── Extract Lowest Set Bit
 │   ├── Rightmost Set Bit Position
-│   ├── Power of 4
 │   └── Check Single Set Bit
 │
 ├── 3. OR (|)

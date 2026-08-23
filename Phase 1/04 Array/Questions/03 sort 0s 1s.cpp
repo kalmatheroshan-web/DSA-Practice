@@ -35,20 +35,5 @@ int main()
     for (auto ele : arr)
         cout << ele << " ";
 
-    int array[] = {1, 0, 1, 1, 0, 1, 0, 1};
-    n = sizeof(array) / sizeof(array[0]);
-
-    cout << endl;
-    cout << "Before" << endl;
-    for (auto ele : array)
-        cout << ele << " ";
-
-    sortZeroesAndOne(array, n);
-
-    cout << endl;
-    cout << "After" << endl;
-    for (auto ele : array)
-        cout << ele << " ";
-
     return 0;
 }

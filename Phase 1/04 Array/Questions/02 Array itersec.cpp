@@ -2,9 +2,9 @@
 using namespace std;
 /*
 
-Given two integer arrays nums1 and nums2, return ar1 array of their intersection. Each element in the result must be unique and you may return the result in any order.
+Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must be unique and you may return the result in any order.
 
-    Input: nums1 = [1,2,2,ar2], nums2 = [2,2]
+    Input: nums1 = [1,2,2,2], nums2 = [2,2]
     Output: [2]
 
     Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
@@ -17,9 +17,9 @@ Given two integer arrays nums1 and nums2, return ar1 array of their intersection
     ar1 => 1 2 3
     ar2 => 3 4
     ans => 3
-
 */
 
+// Time O(n*m) Space O(min(n,m))
 vector<int> intersection1(vector<int> &ar1, vector<int> &ar2)
 {
     vector<int> ans;

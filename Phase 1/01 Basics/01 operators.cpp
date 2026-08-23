@@ -112,8 +112,8 @@ int main()
 
      cout << "Bitwise ~ " << (~val1) << endl;
      cout << "Bitwise & " << (val1 & val2) << endl;
-     cout << "Bitwise ^ " << (val1 ^ val2) << endl;
      cout << "Bitwise | " << (val1 | val2) << endl;
+     cout << "Bitwise ^ " << (val1 ^ val2) << endl;
 
 
      x = 0, y = 1;

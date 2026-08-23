@@ -24,7 +24,6 @@ int main()
     cout << day << endl;
 
     // ---- extra ----
-
     using i = int;
     typedef int in;
     in vac = 12313;

@@ -44,7 +44,7 @@ int main()
 
         int arr[5] = {10 , 20, 30 , 40 , 50};
 
-        address(arr) = base_Address + { index - baseIndex } * size of data type
+        address(arr[index]) = base_Address + { index - baseIndex } * size of data type
         baseIndex = here is 0. it can be anything
 
     */

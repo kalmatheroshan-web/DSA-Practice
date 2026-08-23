@@ -12,9 +12,7 @@ int main()
     // ch = getch();    // does NOT show character and does NOT require Enter
 
     if (ch == 10)
-    {
         printf("It is enter\n");
-    }
     else if (ch == 32)
         printf("It is space\n");
 

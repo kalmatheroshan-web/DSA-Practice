@@ -15,7 +15,7 @@ int maxOccur(vector<int> &ar)
     }
 
     int ans = 0;
-    int maxi = INT_MIN;
+    int maxi = 0;
 
     for (auto val : mp)
     {

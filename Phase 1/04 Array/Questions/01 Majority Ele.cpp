@@ -31,7 +31,7 @@ int majorityElement2(vector<int> &ar)
     // O(N*logn)
     for (int val : ar)
     {
-        mp[val]++;
+        mp[val]++; //O(log n)
     }
 
     // O(N)

@@ -9,7 +9,7 @@ int power_a_b(int a, int b)
     // O(b)
     for (int i = 0; i < half; i++)
         ans *= a;
-
+ 
     return (b % 2) ? ans * ans * a : ans * ans;
 }
 

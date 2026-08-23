@@ -35,5 +35,8 @@ int secondLargestElement(vector<int> &ar)
 int main()
 {
 
+    vector<int> ar = {100, 20, 30, 405, 10, 2};
+
+    cout << "second maxium " << secondLargestElement(ar) << endl;
     return 0;
 }
