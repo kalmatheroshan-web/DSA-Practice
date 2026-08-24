@@ -8,7 +8,7 @@ Question: Find the Missing Number in an Array
 
 Problem Statement:
 
-You are given an array arr of size N − 1 containing distinct integers from 1 to N. Exactly one number is missing from the sequence.
+You are given an array arr of size (N-1) containing distinct integers from 1 to N. Exactly one number is missing from the sequence.
 
 Write a function to find the missing number.
 

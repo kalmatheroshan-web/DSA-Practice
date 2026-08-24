@@ -1,27 +1,43 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
-void rotate(int ar[], int len)
+void right_rotate(vector<int> &ar, int value = 1)
 {
-    int temp = ar[len - 1];
-    int i = len - 2;
-    
-    while (i >= 0)
+    for (int i = 0; i < value; i++)
     {
-        ar[i + 1] = ar[i];
-        i--;
+        int right = ar.back();
+        int len = ar.size();
+        for (int j = 1; j < ar.size(); j++)
+        {
+            ar[len - j] = ar[len - 1 - j];
+        }
+        ar[0] = right;
     }
-    ar[0] = temp;
+}
+
+void left_rotate(vector<int> &ar, int value = 1)
+{
+    for (int i = 0; i < value; i++)
+    {
+        int left = ar[0], len = ar.size();
+        for (int i = 0; i < len - 1; i++)
+            ar[i] = ar[i + 1];
+
+        ar[len - 1] = left;
+    }
 }
 
 int main()
 {
-    int ar[] = {2, 7, 8, 4, 11, 5};
-    int len = sizeof(ar) / sizeof(int);
+    vector<int> ar = {2, 7, 8, 4, 11, 5};
+    for (int val : ar)
+        cout << val << " ";
+    cout << endl;
 
-    rotate(ar, len);
-    for (int i = 0; i < len; i++)
-        cout << ar[i] << " ";
+    right_rotate(ar, 2);
+    for (int val : ar)
+        cout << val << " ";
 
     return 0;
 }
