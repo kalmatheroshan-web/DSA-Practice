@@ -2,20 +2,23 @@
 using namespace std;
 
 /*
-Padding → compiler inserts unused bytes between members to align them according to architecture rules (for faster CPU access).
+Padding → Compiler inserts unused bytes between members to align them
+           according to architecture rules (for faster CPU access).
 
-Packing → forces compiler to remove/reduce padding so the structure takes less memory, but may reduce performance.
+Packing → Forces the compiler to remove/reduce padding so the structure
+          takes less memory, but may reduce performance.
 */
 
 // Normal struct (with padding)
 struct Normal
 {
-    char a; // 1 byte
-    int b;  // 4 bytes
-    char c; // 1 byte
+    char a;   // 1 byte
+    int b;    // 4 bytes
+    char c;   // 1 byte
 };
 
-struct check
+// Another struct to observe padding
+struct Check
 {
     char x;
     double d;
@@ -23,9 +26,8 @@ struct check
     int in;
 };
 
-
-// Packed struct (no padding)
-#pragma pack(push,1);
+// Packed struct (reduced/no padding)
+#pragma pack(push, 1)
 
 struct A
 {
@@ -34,7 +36,7 @@ struct A
     char d;
 };
 
-#pragma pack(pop); // restores previous packing setting/value
+#pragma pack(pop)   // Restores the previous packing setting
 
 struct B
 {
@@ -44,12 +46,17 @@ struct B
 
 int main()
 {
+    cout << "Size of Normal struct (with padding): "
+         << sizeof(Normal) << " bytes\n";
 
-    cout << "Size of Normal struct (with padding): " << sizeof(Normal) << " bytes\n";
-    cout << "Size of Packed struct (no padding): " << sizeof(A) << " bytes\n";
-    cout << "Size of Packed struct (no padding): " << sizeof(B) << " bytes\n";
+    cout << "Size of Packed struct A: "
+         << sizeof(A) << " bytes\n";
 
-    cout << "Size of check " << sizeof(check) << endl;
+    cout << "Size of struct B: "
+         << sizeof(B) << " bytes\n";
+
+    cout << "Size of Check struct: "
+         << sizeof(Check) << " bytes\n";
 
     return 0;
 }

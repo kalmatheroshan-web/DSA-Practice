@@ -51,7 +51,7 @@ int main()
         cout << *(arr + i) << " ";
 
     cout << endl;
-    
+
     for (int *ptr = arr; ptr < arr + 5; ptr++)
         cout << *ptr << " ";
 
