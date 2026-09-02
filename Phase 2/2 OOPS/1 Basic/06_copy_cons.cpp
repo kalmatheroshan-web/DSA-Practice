@@ -6,7 +6,8 @@ class customer
 public:
     string name;
     int ac;
-                                // data mem(vari)
+
+    // data mem(vari)
     customer(string nm, int ac) : name(nm), ac(ac) {}
 
     // custom copy constructor

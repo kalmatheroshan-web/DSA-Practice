@@ -52,7 +52,7 @@ public:
             cout << "Invalid age" << endl;
     }
 
-    void display()
+    void mini_statement()
     {
         cout << "Name " << this->name << endl;
         cout << "Age " << this->age << endl;
@@ -69,14 +69,14 @@ int main()
     customer rohan("Rohan", 12, 1000);
     rohan.deposite(1000);
     rohan.deposite(1000);
-    rohan.display();
+    rohan.mini_statement();
 
     // widrawal
     rohan.widrawal(1000);
     rohan.widrawal(1000);
     rohan.widrawal(1000);
     rohan.widrawal(1000);
-    rohan.display();
+    rohan.mini_statement();
 
     return 0;
 }

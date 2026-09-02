@@ -16,6 +16,7 @@ public:
     friend int main();
     friend class thopo;
 };
+
 class thopo
 {
 public:
@@ -25,14 +26,14 @@ public:
         cout << drama.sum << endl;
     }
 };
+
 int main()
 {
-
     a obj(200);
-    
+
     obj.print();
     cout << obj.sum << endl;
-    
+
     thopo bang;
     bang.say();
 

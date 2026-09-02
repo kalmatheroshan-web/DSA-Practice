@@ -4,7 +4,7 @@ using namespace std;
 
 Given an unsorted array arr[] of size n, containing elements from the range 1 to n, it is known that one number in this range is missing, and another number occurs twice in the array, find both the duplicate number and the missing number.
 
-    Input: arr[] = [1, 3, 3]w
+    Input: arr[] = [1, 3, 3]
     Output: [3, 2]
     Explanation: Repeating number is 3 and the missing number is 2.
 
@@ -13,6 +13,8 @@ Given an unsorted array arr[] of size n, containing elements from the range 1 to
     Explanation: Repeating number is 1 and the missing number is 5.
 
 */
+
+// time O(1) space O(1)
 vector<int> findRepeatAndMissing(vector<int> &ar)
 {
     int n = ar.size();

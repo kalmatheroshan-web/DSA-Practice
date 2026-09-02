@@ -42,7 +42,7 @@ class student
 
 public:
     student(string name, int marks)
-    {
+    {   
         this->name = name;
         this->marks = marks;
     }
@@ -72,7 +72,7 @@ public:
         // name = n;
         balance = new int(bal);
     }  
-};
+};  
 
 int main()
 {

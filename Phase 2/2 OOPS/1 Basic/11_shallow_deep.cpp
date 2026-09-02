@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// shallow -- serface level
-// deep -- Dettail oriented work
+// shallow -- serface level (Default)
+// deep -- Detail oriented work
 
 class Person
 {

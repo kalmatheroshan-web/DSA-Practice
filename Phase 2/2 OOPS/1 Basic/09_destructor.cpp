@@ -30,7 +30,7 @@ public:
     // it can't handle dynamic obj
     ~customer()
     {
-        delete balance;
+        delete balance; 
         cout << "Destructor of " << this->name << endl;
     }
 };

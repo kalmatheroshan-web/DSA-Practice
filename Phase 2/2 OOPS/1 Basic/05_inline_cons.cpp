@@ -38,14 +38,11 @@ inline void Student::display()
 
 int main()
 {
-
     exam eg(110, 'A');
     eg.pr();
 
     Student rohit("Rohit", 12);
-    
+
     cout << endl;
     rohit.display();
-
-        
 }

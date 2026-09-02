@@ -16,6 +16,7 @@ void pr_row(int ar[][3], int row, int col)
         cout << endl;
     }
 }
+
 // Print in row major
 void pr_row(int ar[][4], int row, int col)
 {
