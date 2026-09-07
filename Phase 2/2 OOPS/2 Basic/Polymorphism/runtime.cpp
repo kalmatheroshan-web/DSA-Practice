@@ -20,7 +20,7 @@ public:
 class Dog : public Animal
 {
 public:
-    void speak() 
+    void speak()
     {
         cout << "bark" << endl;
     }
@@ -51,8 +51,8 @@ int main()
 
     // Downcasting ..
     // Dog *ani = new Animal(); // error
-    Dog *dg = (Dog *)new Animal();
-    dg->speak();
+    Dog *dog = dynamic_cast<Dog *>(ani);
+    dog->speak();
 
     // ani->speak();
     // ani->walk(); //error
@@ -80,7 +80,7 @@ int main()
     parent *a = new child;
     child *a = new parent;
 
-    ----- ----- 
+    ----- -----
     w/o virtual right side
     with virtual left side
 

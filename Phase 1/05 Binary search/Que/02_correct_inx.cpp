@@ -4,10 +4,10 @@ using namespace std;
 int correct_index(int ar[], int len, int ele)
 {
     int start = 0, end = len - 1;
-    int ans = -1;
+    int ans = len;
     while (start <= end)
     {
-        int mid = end + (start - end) / 2;
+        int mid = start + (end - start) / 2;
         if (ar[mid] > ele)
         {
             ans = mid;
@@ -18,6 +18,8 @@ int correct_index(int ar[], int len, int ele)
     }
     return ans;
 }
+
+// Related Qn :  Equilibrium Point
 
 int main()
 {

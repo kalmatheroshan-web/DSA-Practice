@@ -11,12 +11,11 @@ class math
 public:
     // fnx overloading .. (name and return type must be same)
     int sum(int a, int b) { return a + b; }
-    int sum(int a, double b) { return a; }
+    int sum(int a, double b) { return b - a; }
     int sum(int a, int b, int c) { return a + b + c; }
 };
 
 // 2 operator overloading
-
 class dub
 {
 public:
@@ -63,7 +62,7 @@ int main()
 
     cout << p << endl;
     cout << "enter the values" << endl;
-    
+
     cin >> p;
     cout << p << endl;
 
