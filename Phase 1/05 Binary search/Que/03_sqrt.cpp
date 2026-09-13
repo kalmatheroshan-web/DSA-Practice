@@ -6,7 +6,7 @@ int floorSqrt(int n)
     if (n < 4)
         return 1;
 
-    int s = 2, e = n;
+    int s = 2, e = n / 2;
     int ans = 0;
 
     while (s <= e)
@@ -32,14 +32,12 @@ int floorSqrt(int n)
     return ans;
 }
 
-int floorSqrt2(int n)
+double sqrtWithPrecision(int n, int precision)
 {
-    if (n < 2)
-        return n;
-
-    int s = 1;
-    int e = n / 2;
-    int ans = 1;
+    // Step 1: Find integer part
+    int s = 0;
+    int e = n;
+    int ans = 0;
 
     while (s <= e)
     {
@@ -56,7 +54,24 @@ int floorSqrt2(int n)
         }
     }
 
-    return ans;
+    double result = ans;
+    double increment = 0.1;
+
+    // Step 2: Find decimal digits
+    for (int p = 0; p < precision; p++)
+    {
+        double candidate = result + increment;
+
+        while (candidate * candidate <= n)
+        {
+            result = candidate;
+            candidate += increment;
+        }
+
+        increment /= 10;
+    }
+
+    return result;
 }
 
 int main()

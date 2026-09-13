@@ -1,64 +1,112 @@
 #include <iostream>
+#include <vector>
+
 using namespace std;
 
 /*
+    Problem:
+    You are given an integer mountain array arr of length n.
 
-You are given an integer mountain array arr of length n where the values increase to a peak element and then decrease.
+    The values:
+        - strictly increase up to a peak
+        - strictly decrease after the peak
 
-Return the index of the peak element.
+    Return the index of the peak element.
 
-Your task is to solve it in O(log(n)) time complexity.
-
-
-Example 1:
-
-    Input: arr = [0,1,0]
-    Output: 1
-
-Example 2:
-
-    Input: arr = [0,2,1,0]
-    Output: 1
-
-Example 3:
-
-    Input: arr = [0,10,5,2]
-    Output: 1
+    Requirement:
+        O(log n) time
 */
 
-// brute force
-int peakIndexInMountainArray(int ar[], int len)
+/* =========================================================
+   Brute Force
+   Time  : O(n)
+   Space : O(1)
+   ========================================================= */
+
+int peakIndexBruteForce(const vector<int> &arr)
 {
-    for (int i = 0; i < len; i++)
+    int n = arr.size();
+
+    for (int i = 1; i < n - 1; ++i)
     {
-        if (ar[i] > ar[i + 1])
+        bool left = arr[i] > arr[i - 1];
+        bool right = arr[i] > arr[i + 1];
+        
+        if (left && right)
             return i;
     }
+
     return -1;
 }
 
-// binary search
-int peakIndexInMountainArray(int ar[], int len)
-{
-    int st = 0, end = len - 1;
-    int ans = -1;
+/* =========================================================
+   Binary Search
+   Time  : O(log n)
+   Space : O(1)
+   ========================================================= */
 
-    while (st <= end)
+int peakIndexBinarySearch(const vector<int> &arr)
+{
+    int left = 0;
+    int right = arr.size() - 1;
+
+    while (left < right)
     {
-        int mid = st + (end - st) / 2;
-        if (mid + 1 < len && ar[mid] > ar[mid + 1])
+        int mid = left + (right - left) / 2;
+
+        /*
+            Increasing slope:
+
+                arr[mid] < arr[mid + 1]
+
+                Example:
+
+                    0  2  5  8  12  9  4
+                          ↑
+                         mid
+
+                Peak is to the RIGHT.
+        */
+        if (arr[mid] < arr[mid + 1])
         {
-            ans = mid;
-            end = mid - 1;
+            left = mid + 1;
         }
+        /*
+            Decreasing slope:
+
+                arr[mid] > arr[mid + 1]
+
+                Example:
+
+                    0  2  5  8  12  9  4
+                              ↑
+                             mid
+
+                Peak is at mid OR to the LEFT.
+
+                Therefore we keep mid.
+        */
         else
-            st = mid + 1;
+        {
+            right = mid;
+        }
     }
-    return ans;
+
+    // left == right → peak index
+    return left;
 }
 
 int main()
 {
+    vector<int> arr = {0, 2, 5, 8, 12, 9, 4};
+
+    cout << "Brute Force: "
+         << peakIndexBruteForce(arr)
+         << '\n';
+
+    cout << "Binary Search: "
+         << peakIndexBinarySearch(arr)
+         << '\n';
 
     return 0;
 }
