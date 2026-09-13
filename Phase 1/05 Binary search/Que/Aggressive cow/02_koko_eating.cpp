@@ -1,54 +1,86 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 /*
+    Koko loves to eat bananas.
 
-Koko loves to eat bananas. There are n piles of bananas, the ith pile has piles[i] bananas. The guards have gone and will come back in h hours.
+    We need to find the MINIMUM eating speed "k"
+    such that Koko can finish all piles within h hours.
 
-Koko can decide her bananas-per-hour eating speed of k. Each hour, she chooses some pile of bananas and eats k bananas from that pile. If the pile has less than k bananas, she eats all of them instead and will not eat any more bananas during this hour.
+    Example:
+    piles = {3, 6, 7, 11}
+    h = 8
 
-            ************
-Koko likes to eat slowly but still wants to finish eating all the bananas before the guards return.
-            ************
-            
-Return the minimum integer k such that she can eat all the bananas within h hours.
+    Answer = 4
 
+    At speed 4:
+        3  -> 1 hour
+        6  -> 2 hours
+        7  -> 2 hours
+        11 -> 3 hours
 
+        Total = 1 + 2 + 2 + 3 = 8 hours
 */
+
+// Check if Koko can finish all bananas
+// when her eating speed is "speed".
+bool canFinish(const vector<int> &piles, int h, int speed)
+{
+    long long hours = 0;
+
+    for (int bananas : piles)
+    {
+        // ceil(bananas / speed)
+        hours += (bananas + speed - 1) / speed;
+
+        // No need to continue if already too slow
+        if (hours > h)
+            return false;
+    }
+
+    return true;
+}
+
 int minEatingSpeed(vector<int> &piles, int h)
 {
-    sort(piles.begin(), piles.end());
+    // Smallest possible speed
+    int start = 1;
 
-    int n = piles.size();
-    int s = 1, e = piles[n - 1];
-    int ans = 0;
+    // Largest useful speed = largest pile
+    int end = *max_element(piles.begin(), piles.end());
 
-    while (s <= e)
+    int answer = end;
+
+    while (start <= end)
     {
-        int mid = s + (e - s) / 2;
-        long long calc_h = 0;
+        int speed = start + (end - start) / 2;
 
-        for (int val : piles)
+        if (canFinish(piles, h, speed))
         {
-            calc_h += ceil((double)val / mid);
-            if (calc_h > h)
-                break;
+            // This speed works.
+            // But maybe an even smaller speed can work.
+            answer = speed;
+            end = speed - 1;
         }
-
-        if (calc_h > h)
-            s = mid + 1;
         else
         {
-            ans = mid;
-            e = mid - 1;
+            // This speed is too slow.
+            // We need a bigger speed.
+            start = speed + 1;
         }
     }
-    return ans;
+
+    return answer;
 }
+
 int main()
 {
     vector<int> piles = {3, 6, 7, 11};
     int hours = 8;
 
     int answer = minEatingSpeed(piles, hours);
-    cout << "The minimum time it will be take to finish banana " << answer << endl;
+
+    cout << "Minimum eating speed = " << answer << endl;
+
+    return 0;
 }
