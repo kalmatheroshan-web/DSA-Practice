@@ -1,1 +1,3 @@
 https://leetcode.com/problem-list/two-pointers/
+https://github.com/Chanda-Abdul/Several-Coding-Patterns-for-Solving-Data-Structures-and-Algorithms-Problems-during-Interviews/blob/main/%E2%9C%85%20%20Pattern%2002%3A%20Two%20Pointers.md
+

@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
-
-    using namespace std;
+using namespace std;
 
 /*
 ============================================================
@@ -99,7 +98,7 @@ Therefore, we can use:
 // Feasibility Function
 //
 // Checks whether we can place 'k' cows such that the minimum
-// distance between any two cows is at least 'minDistance'.
+// distance between any two cows is at least 'minDistance'.         please remember that it's atleast distance
 //
 // Time Complexity: O(N)
 // Space Complexity: O(1)
@@ -107,29 +106,29 @@ Therefore, we can use:
 
 bool canPlaceCows(const vector<int> &stalls, int k, int minDistance)
 {
-    int count = 1;
+  int count = 1;
 
-    // First cow is placed at the first stall.
-    int lastPosition = stalls[0];
+  // First cow is placed at the first stall.
+  int lastPosition = stalls[0];
 
-    for (int i = 1; i < stalls.size(); i++)
+  for (int i = 1; i < stalls.size(); i++)
+  {
+    // If this stall is far enough from the last cow,
+    // place another cow here.
+    if (stalls[i] - lastPosition >= minDistance)
     {
-        // If this stall is far enough from the last cow,
-        // place another cow here.
-        if (stalls[i] - lastPosition >= minDistance)
-        {
-            count++;
-            lastPosition = stalls[i];
+      count++;
+      lastPosition = stalls[i];
 
-            // We successfully placed all k cows.
-            if (count == k)
-            {
-                return true;
-            }
-        }
+      // We successfully placed all k cows.
+      if (count == k)
+      {
+        return true;
+      }
     }
+  }
 
-    return false;
+  return false;
 }
 
 // ============================================================
@@ -149,44 +148,42 @@ bool canPlaceCows(const vector<int> &stalls, int k, int minDistance)
 
 int aggressiveCowsBruteForce(vector<int> stalls, int k)
 {
-    int n = stalls.size();
+  int n = stalls.size();
 
-    if (k > n)
+  if (k > n)
+  {
+    return -1;
+  }
+
+  // Sort stall positions.
+  sort(stalls.begin(), stalls.end());
+
+  // Minimum possible distance = 1
+  //
+  // Maximum possible distance =
+  // last stall - first stall
+
+  int maxDistance = stalls[n - 1] - stalls[0];
+
+  int answer = -1;
+
+  // Try every possible minimum distance.
+  for (int minDistance = 1; minDistance <= maxDistance; minDistance++)
+  {
+    if (canPlaceCows(stalls, k, minDistance))
     {
-        return -1;
+      // This distance is possible.
+      answer = minDistance;
     }
-
-    // Sort stall positions.
-    sort(stalls.begin(), stalls.end());
-
-    // Minimum possible distance = 1
-    //
-    // Maximum possible distance =
-    // last stall - first stall
-
-    int maxDistance = stalls[n - 1] - stalls[0];
-
-    int answer = -1;
-
-    // Try every possible minimum distance.
-    for (int minDistance = 1;
-         minDistance <= maxDistance;
-         minDistance++)
+    else
     {
-        if (canPlaceCows(stalls, k, minDistance))
-        {
-            // This distance is possible.
-            answer = minDistance;
-        }
-        else
-        {
-            // If this distance is not possible,
-            // larger distances will also not be possible.
-            break;
-        }
+      // If this distance is not possible,
+      // larger distances will also not be possible.
+      break;
     }
+  }
 
-    return answer;
+  return answer;
 }
 
 /*
@@ -315,88 +312,88 @@ This is the important binary-search pattern:
 
 int aggressiveCows(vector<int> stalls, int k)
 {
-    int n = stalls.size();
+  int n = stalls.size();
 
-    if (k > n)
+  if (k > n)
+  {
+    return -1;
+  }
+
+  // Sort stall positions.
+  sort(stalls.begin(), stalls.end());
+
+  // --------------------------------------------------------
+  // Search Space
+  // --------------------------------------------------------
+
+  int start = 1;
+
+  int end = stalls[n - 1] - stalls[0];
+
+  int answer = -1;
+
+  // --------------------------------------------------------
+  // Binary Search
+  // --------------------------------------------------------
+
+  while (start <= end)
+  {
+    int mid = start + (end - start) / 2;
+
+    // Can we place k cows with at least 'mid'
+    // distance between them?
+    if (canPlaceCows(stalls, k, mid))
     {
-        return -1;
+      // YES:
+      // mid is a possible answer.
+      //
+      // But we want the maximum possible distance,
+      // so try something larger.
+
+      answer = mid;
+
+      start = mid + 1;
     }
-
-    // Sort stall positions.
-    sort(stalls.begin(), stalls.end());
-
-    // --------------------------------------------------------
-    // Search Space
-    // --------------------------------------------------------
-
-    int start = 1;
-
-    int end = stalls[n - 1] - stalls[0];
-
-    int answer = -1;
-
-    // --------------------------------------------------------
-    // Binary Search
-    // --------------------------------------------------------
-
-    while (start <= end)
+    else
     {
-        int mid = start + (end - start) / 2;
+      // NO:
+      // mid is too large.
+      //
+      // Try a smaller distance.
 
-        // Can we place k cows with at least 'mid'
-        // distance between them?
-        if (canPlaceCows(stalls, k, mid))
-        {
-            // YES:
-            // mid is a possible answer.
-            //
-            // But we want the maximum possible distance,
-            // so try something larger.
-
-            answer = mid;
-
-            start = mid + 1;
-        }
-        else
-        {
-            // NO:
-            // mid is too large.
-            //
-            // Try a smaller distance.
-
-            end = mid - 1;
-        }
+      end = mid - 1;
     }
+  }
 
-    return answer;
+  return answer;
 }
 
 int main()
 {
-    // Example 1
-    //
-    // vector<int> stalls = {8, 1, 2, 4, 9};
+  // Example 1
+  //
+  // vector<int> stalls = {8, 1, 2, 4, 9};
 
-    // Example 2
-    vector<int> stalls = {1, 2, 4, 5, 10};
+  // Example 2
+  vector<int> stalls = {1, 2, 4, 5, 10};
 
-    int k = 3;
+  int k = 3;
 
-    // --------------------------------------------------------
-    // Brute Force
-    // --------------------------------------------------------
+  // --------------------------------------------------------
+  // Brute Force
+  // --------------------------------------------------------
 
-    cout << "Brute Force Answer : "
-         << aggressiveCowsBruteForce(stalls, k)
-         << endl;
+  cout << "Brute Force Answer : "
+       << aggressiveCowsBruteForce(stalls, k)
+       << endl;
 
-    // --------------------------------------------------------
-    // Binary Search
-    // --------------------------------------------------------
+  // --------------------------------------------------------
+  // Binary Search
+  // --------------------------------------------------------
 
-    cout << "Binary Search Answer : "
-         << aggressiveCows(stalls, k)
-         << endl;
+  cout << "Binary Search Answer : "
+       << aggressiveCows(stalls, k)
+       << endl;
 
-    return 0;
+  return 0;
 }

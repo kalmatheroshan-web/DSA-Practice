@@ -11,11 +11,11 @@ and an integer k, find the k-th positive integer that is missing from this array
 
 // ============================================================
 // Brute Force Approach
-// Time Complexity: O(N + answer)
+// Time Complexity: O(N + k)
 // Space Complexity: O(1)
 // ============================================================
 
-int linearSearchApproach(const vector<int> &arr, int k)
+int linearSearchApproach(const vector<int> &ar, int k)
 {
     int current = 1;
     int i = 0;
@@ -23,8 +23,8 @@ int linearSearchApproach(const vector<int> &arr, int k)
 
     while (true)
     {
-        // Current number exists in the array
-        if (i < arr.size() && arr[i] == current)
+        // Current number exists in the aray
+        if (i < ar.size() && ar[i] == current)
         {
             i++;
         }
@@ -34,9 +34,7 @@ int linearSearchApproach(const vector<int> &arr, int k)
             missingCount++;
 
             if (missingCount == k)
-            {
                 return current;
-            }
         }
 
         current++;
@@ -45,13 +43,13 @@ int linearSearchApproach(const vector<int> &arr, int k)
 
 // ============================================================
 // Hash Set Approach
-// Time Complexity: O(N + answer) average
+// Time Complexity: O(N + k) average
 // Space Complexity: O(N)
 // ============================================================
 
-int hashSetApproach(const vector<int> &arr, int k)
+int hashSetApproach(const vector<int> &ar, int k)
 {
-    unordered_set<int> s(arr.begin(), arr.end());
+    unordered_set<int> s(ar.begin(), ar.end());
 
     int missingCount = 0;
     int current = 1;
