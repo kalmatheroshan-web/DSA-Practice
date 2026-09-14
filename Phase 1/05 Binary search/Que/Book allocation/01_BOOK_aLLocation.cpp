@@ -1,125 +1,276 @@
-#include <iostream>
-#include <vector>
-
+#include <bits/stdc++.h>
 using namespace std;
 
 /*
-You are given an array arr[] of integers, where each element arr[i] represents the number of pages in the ith book. You also have an integer k representing the number of students. The task is to allocate books to each student such that:
+    BOOK ALLOCATION PROBLEM
 
-- Each student receives atleast one book.
-- Each student is assigned a contiguous sequence of books.
-- No book is assigned to more than one student.
-- All books must be allocated
+    Given:
+        ar[i] = number of pages in the ith book
+        k     = number of students
 
-The objective is to minimize the maximum number of pages assigned to any student. In other words, out of all possible allocations, find the arrangement where the student who receives the most pages still has the smallest possible maximum.
+    Conditions:
+        1. Every student gets at least one book.
+        2. Books assigned to a student must be contiguous.
+        3. A book cannot be assigned to multiple students.
+        4. Every book must be assigned.
 
-Note: Return -1 if a valid assignment is not possible, and allotment should be in contiguous order (see the explanation for better understanding).
-
-inshort :
-    min(max)
-
- you are trying to assign equal page's book to every std but pages may diff you are trying to assign such that the diff bw the allocation will be mini so that load is balnaced.
-
+    Goal:
+        Minimize the maximum number of pages assigned
+        to any student.
 */
-// Brute force
-int findPages(std::vector<int> &ar, int k)
+
+// APPROACH 1: BRUTE FORCE OVER POSSIBLE ANSWERS
+
+bool canAllocate(int ar[], int n, int k, long long limit)
 {
-    if (k > ar.size())
+  int students = 1;
+  long long pages = 0;
+
+  for (int i = 0; i < n; i++)
+  {
+    // If a single book itself is larger than limit,
+    // allocation is impossible.
+    if (ar[i] > limit)
+      return false;
+
+    if (pages + ar[i] <= limit)
     {
-        return -1;
+      pages += ar[i];
     }
-
-    int maxi = 0;
-    int sumi = 0;
-
-    for (int val : ar)
+    else
     {
-        maxi = max(maxi, val);
-        sumi += val;
+      // Give this book to another student.
+      students++;
+      pages = ar[i];
+
+      if (students > k)
+        return false;
     }
+  }
 
-    for (int i = maxi; i <= sumi; ++i)
-    {
-        int count = 1;
-        int cur = 0, page_sum = 0;
+  return true;
+}
 
-        for (int pages : ar)
-        {
-            page_sum += pages;
-            if (page_sum > i)
-            {
-                count++;
-                page_sum = pages;
-            }
-        }
-
-        if (count <= k)
-        {
-            return i;
-        }
-    }
-
+long long findPagesBruteForce(int ar[], int n, int k)
+{
+  if (k > n)
     return -1;
+
+  long long maximum = 0;
+  long long total = 0;
+
+  for (int i = 0; i < n; i++)
+  {
+    maximum = max(maximum, (long long)ar[i]);
+    total += ar[i];
+  }
+
+  // Try every possible maximum load.
+  for (long long limit = maximum; limit <= total; limit++)
+  {
+    if (canAllocate(ar, n, k, limit))
+      return limit;
+  }
+
+  return -1;
 }
-// binary search
-int findPages(vector<int> &ar, int k)
+
+// ============================================================
+// APPROACH 2: RECURSION / BACKTRACKING
+// ============================================================
+
+long long solveRecursive(int ar[], int n, int index, int studentsLeft, long long currentMax)
 {
+  // If this is the last student,
+  // give all remaining books to this student.
+  if (studentsLeft == 1)
+  {
+    long long pages = 0;
 
-    int len = ar.size();
-
-    if (len < k)
-        return -1;
-
-    int st = INT32_MIN, end = 0;
-
-    // find maximum for start and end will be sum of all
-    for (int val : ar)
+    for (int i = index; i < n; i++)
     {
-        if (val > st)
-            st = val;
-        end += val;
+      pages += ar[i];
     }
 
-    int ans = -1;
-    while (st <= end)
-    {
-        int mid = st + (end - st) / 2;
-        int count = 1, page_sum = 0;
+    return max(currentMax, pages);
+  }
 
-        for (int pages : ar)
-        {
-            page_sum += pages;
-            if (page_sum > mid)
-            {
-                count++;
-                page_sum = pages;
-            }
-        }
+  long long pages = 0;
+  long long answer = -1; // Or LLONG_MAX
 
-        if (count <= k)
-        {
-            ans = mid;
-            end = mid - 1;
-        }
-        else
-            st = mid + 1;
-    }
+  for (int i = index; i <= n - studentsLeft; i++)
+  {
+    pages += ar[i];
 
-    return ans;
+    long long maximumForThisSplit =
+        solveRecursive(
+            ar,
+            n,
+            i + 1,
+            studentsLeft - 1,
+            max(currentMax, pages));
+
+    if (answer == -1)
+      answer = maximumForThisSplit;
+    else
+      answer = min(answer, maximumForThisSplit);
+  }
+
+  return answer;
 }
 
-/*
-    Time : O(n * log(sum−max+1))
-    space : O(1)
+long long findPagesRecursive(int ar[], int n, int k)
+{
+  if (k > n)
+    return -1;
 
-*/
+  return solveRecursive(
+      ar,
+      n,
+      0,
+      k,
+      0);
+}
+
+// ============================================================
+// APPROACH 3: BINARY SEARCH ON ANSWER
+// ============================================================
+
+bool isPossible(int ar[], int n, int k, long long limit)
+{
+  int students = 1;
+  long long pages = 0;
+
+  for (int i = 0; i < n; i++)
+  {
+    // One book itself exceeds the allowed limit.
+    if (ar[i] > limit)
+      return false;
+
+    if (pages + ar[i] <= limit)
+      pages += ar[i];
+
+    else
+    {
+      // Start a new student.
+      students++;
+      pages = ar[i];
+
+      if (students > k)
+        return false;
+    }
+  }
+
+  return true;
+}
+
+long long findPagesBinarySearch(int ar[], int n, int k)
+{
+  if (k > n)
+    return -1;
+
+  long long low = 0;
+  long long high = 0;
+
+  for (int i = 0; i < n; i++)
+  {
+    low = max(low, (long long)ar[i]);
+    high += ar[i];
+  }
+
+  long long answer = -1;
+
+  while (low <= high)
+  {
+    long long mid = low + (high - low) / 2;
+
+    if (isPossible(ar, n, k, mid))
+    {
+      answer = mid;
+      high = mid - 1;
+    }
+    else
+    {
+      low = mid + 1;
+    }
+  }
+
+  return answer;
+}
+
+// ============================================================
+// VECTOR VERSION
+// ============================================================
+
+bool isPossible(const vector<int> &ar, int k, long long limit)
+{
+  int students = 1;
+  long long pages = 0;
+
+  for (int book : ar)
+  {
+    if (book > limit)
+      return false;
+
+    if (pages + book <= limit)
+    {
+      pages += book;
+    }
+    else
+    {
+      students++;
+      pages = book;
+
+      if (students > k)
+        return false;
+    }
+  }
+
+  return true;
+}
+
+long long findPages(vector<int> &ar, int k)
+{
+  int n = ar.size();
+
+  if (k > n)
+    return -1;
+
+  long long low = 0;
+  long long high = 0;
+
+  for (int pages : ar)
+  {
+    low = max(low, (long long)pages);
+    high += pages;
+  }
+
+  long long answer = -1;
+
+  while (low <= high)
+  {
+    long long mid = low + (high - low) / 2;
+
+    if (isPossible(ar, k, mid))
+    {
+      answer = mid;
+      high = mid - 1;
+    }
+    else
+    {
+      low = mid + 1;
+    }
+  }
+
+  return answer;
+}
 
 int main()
 {
-    vector<int> ar = {2, 3, 4, 7, 11, 12};
-    int k = 2;
+  vector<int> ar = {10, 20, 30, 40};
+  int k = 2;
 
-    int minimum_diff = findPages(ar, k);
+  cout << findPages(ar, k) << endl;
 
-    return 0;
+  return 0;
 }

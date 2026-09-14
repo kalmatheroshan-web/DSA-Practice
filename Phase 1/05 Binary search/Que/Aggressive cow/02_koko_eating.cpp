@@ -26,61 +26,72 @@ using namespace std;
 // when her eating speed is "speed".
 bool canFinish(const vector<int> &piles, int h, int speed)
 {
-    long long hours = 0;
+  long long hours = 0;
 
-    for (int bananas : piles)
-    {
-        // ceil(bananas / speed)
-        hours += (bananas + speed - 1) / speed;
+  for (int bananas : piles)
+  {
+    // ceil(bananas / speed)
+    hours += (bananas + speed - 1) / speed;
 
-        // No need to continue if already too slow
-        if (hours > h)
-            return false;
-    }
+    // No need to continue if already too slow
+    if (hours > h)
+      return false;
+  }
 
-    return true;
+  return true;
 }
 
-int minEatingSpeed(vector<int> &piles, int h)
+int minEatingSpeed(const vector<int> &piles, int h)
 {
-    // Smallest possible speed
-    int start = 1;
+  int maxSpeed = *max_element(piles.begin(), piles.end());
+  // Try every possible speed
+  for (int speed = 1; speed <= maxSpeed; speed++)
+  {
+    if (canFinish(piles, h, speed))
+      return speed;
+  }
+  return maxSpeed;
+}
 
-    // Largest useful speed = largest pile
-    int end = *max_element(piles.begin(), piles.end());
+int minEatingSpeed(const vector<int> &piles, int h)
+{
+  // Smallest possible speed
+  int start = 1;
 
-    int answer = end;
+  // Largest useful speed = largest pile
+  int end = *max_element(piles.begin(), piles.end());
 
-    while (start <= end)
+  int answer = end;
+
+  while (start <= end)
+  {
+    int speed = start + (end - start) / 2;
+
+    if (canFinish(piles, h, speed))
     {
-        int speed = start + (end - start) / 2;
-
-        if (canFinish(piles, h, speed))
-        {
-            // This speed works.
-            // But maybe an even smaller speed can work.
-            answer = speed;
-            end = speed - 1;
-        }
-        else
-        {
-            // This speed is too slow.
-            // We need a bigger speed.
-            start = speed + 1;
-        }
+      // This speed works.
+      // But maybe an even smaller speed can work.
+      answer = speed;
+      end = speed - 1;
     }
+    else
+    {
+      // This speed is too slow.
+      // We need a bigger speed.
+      start = speed + 1;
+    }
+  }
 
-    return answer;
+  return answer;
 }
 
 int main()
 {
-    vector<int> piles = {3, 6, 7, 11};
-    int hours = 8;
+  vector<int> piles = {3, 6, 7, 11};
+  int hours = 8;
 
-    int answer = minEatingSpeed(piles, hours);
+  int answer = minEatingSpeed(piles, hours);
+  cout << "Minimum eating speed = " << answer << endl;
 
-    cout << "Minimum eating speed = " << answer << endl;
-
-    return 0;
+  return 0;
 }
