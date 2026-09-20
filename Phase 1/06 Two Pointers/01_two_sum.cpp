@@ -48,6 +48,7 @@ vector<int> twoSum(vector<int> &ar, int tar)
         vp.push_back({ar[i], i});
     }
 
+    // nlogn
     sort(vp.begin(), vp.end());
     int s = 0, e = n - 1;
 

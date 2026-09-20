@@ -2,8 +2,6 @@
 using namespace std;
 
 /*
-
-
 Problem in Simple Words:
 
     -- You are given an array of weights, where each element is the weight of a package.
@@ -18,6 +16,7 @@ Problem in Simple Words:
 
 
 Rules:
+Remember that: weights are not sorted, and you cannot change the order of packages.
 
 You can load packages one by one in the given order.
 
@@ -26,6 +25,50 @@ You can load packages one by one in the given order.
     -You must finish shipping all packages within exactly D days or less.
 
 */
+
+bool isPossible(const vector<int> &ar, int days, int capacity)
+{
+    int requiredDays = 1, currentLoad = 0;
+    for (int w : ar)
+    {
+        if (currentLoad + w > capacity)
+        {
+            requiredDays++; // start new day
+            currentLoad = 0;
+        }
+        currentLoad += w;
+    }
+    return requiredDays <= days;
+}
+
+// brute force approach
+int shipWithinDays(vector<int> &ar, int days)
+{
+    int n = ar.size() - 1;
+
+    int minimum = 0;
+    int maximum = 0;
+
+    for (int load : ar)
+    {
+        minimum = max(minimum, load);
+        maximum += load;
+    }
+
+    int ans = maximum;
+
+    for (int i = minimum; i <= maximum; i++)
+    {
+        if (isPossible(ar, days, i))
+        {
+            ans = i;
+            break;
+        }
+    }
+
+    return ans;
+}
+
 int shipWithinDays(vector<int> &weights, int days)
 {
     int low = 0, high = 0, answer = -1;
@@ -40,27 +83,14 @@ int shipWithinDays(vector<int> &weights, int days)
     while (low <= high)
     {
         int mid = low + (high - low) / 2; // trial capacity
-        int requiredDays = 1, currentLoad = 0;
 
-        for (int w : weights)
-        {
-            if (currentLoad + w > mid)
-            { // start new day
-                requiredDays++;
-                currentLoad = 0;
-            }
-            currentLoad += w;
-        }
-
-        if (requiredDays <= days)
+        if (isPossible(weights, days, mid))
         {
             answer = mid; // capacity works, try smaller
             high = mid - 1;
         }
         else
-        {
             low = mid + 1; // capacity too small, increase it
-        }
     }
 
     return answer;
