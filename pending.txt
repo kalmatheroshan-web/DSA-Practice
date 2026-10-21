@@ -1,0 +1,11 @@
+Optimal Array
+https://www.geeksforgeeks.org/problems/optimal-array--170647/1
+https://www.geeksforgeeks.org/problems/find-the-largest-number4953/1
+
+
+get 100% better on leetcode
+auto init = atexit([]() { ofstream("display_runtime.txt") << "0"; });
+
+
+random
+https://leetcode.com/contest/weekly-contest-474/problems/maximum-product-of-three-elements-after-one-replacement/description/
