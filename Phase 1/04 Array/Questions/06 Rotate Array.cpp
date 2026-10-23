@@ -1,5 +1,4 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
 void right_rotate(vector<int> &ar, int value = 1)
@@ -16,6 +15,11 @@ void right_rotate(vector<int> &ar, int value = 1)
     }
 }
 
+/*
+time : O(n * value)
+space : O(1)
+*/
+
 void left_rotate(vector<int> &ar, int value = 1)
 {
     for (int i = 0; i < value; i++)
@@ -27,6 +31,27 @@ void left_rotate(vector<int> &ar, int value = 1)
         ar[len - 1] = left;
     }
 }
+/*
+time : O(n * value)
+space : O(1)
+*/
+
+void rotateArr(vector<int> &ar, int d)
+{
+    int n = ar.size();
+    if (n == 0 || n == 1)
+        return;
+
+    d %= n;
+    reverse(ar.begin(), ar.begin() + d);
+    reverse(ar.begin() + d, ar.end());
+    reverse(ar.begin(), ar.end());
+}
+
+/*
+time : O(n)
+space : O(1)
+*/
 
 int main()
 {
@@ -34,6 +59,10 @@ int main()
     for (int val : ar)
         cout << val << " ";
     cout << endl;
+
+    rotateArr(ar, 2);
+    for (int val : ar)
+        cout << val << " ";
 
     right_rotate(ar, 2);
     for (int val : ar)
