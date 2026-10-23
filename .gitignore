@@ -1,8 +1,9 @@
 # Compiled C++ executable
-/a.exe
+/test.exe
 
 # C++ source file (only if you want Git to ignore it)
-/text.cpp
+/test.cpp
 
 # Pending or temporary file
 /Remember.txt
+/run
