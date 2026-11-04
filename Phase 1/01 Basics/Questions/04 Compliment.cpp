@@ -41,9 +41,11 @@ int comp_int(int num)
 
 int findComplement(int num)
 {
-
     if (num == 0 || num == 1)
         return !num;
+
+    if (!(num & num - 1))
+        return num - 1;
 
     int ans = 0, i = 0;
     while (num)

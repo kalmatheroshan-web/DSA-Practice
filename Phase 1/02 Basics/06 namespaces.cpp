@@ -20,24 +20,24 @@ using namespace std;
 // 1. BASIC NAMESPACES
 namespace Physics
 {
-    int val = 90;
+    int marks = 90;
     void display()
     {
-        cout << "Physics value: " << val << endl;
+        cout << "Physics marksue: " << marks << endl;
     }
 }
 
 namespace Chemistry
 {
-    int val = 85;
+    int marks = 85;
     void display()
     {
-        cout << "Chemistry value: " << val << endl;
+        cout << "Chemistry marksue: " << marks << endl;
     }
 }
 
 // 2. GLOBAL SCOPE VS LOCAL SCOPE
-int globalVal = 500; // Global scope variable
+int globalmarks = 500; // Global scope variable
 
 // 3. NESTED NAMESPACES
 namespace Outer
@@ -75,19 +75,19 @@ int main()
     cout << "--- 1. Avoiding Conflicts with Scope Resolution (::) ---" << endl;
     Physics::display();
     Chemistry::display();
-    cout << "Physics Val: " << Physics::val << " | Chemistry Val: " << Chemistry::val << endl
+    cout << "Physics marks: " << Physics::marks << " | Chemistry marks: " << Chemistry::marks << endl
          << endl;
 
     cout << "--- 2. Global Scope Resolution ---" << endl;
-    int globalVal = 50; // Shadows global variable
-    cout << "Local globalVal: " << globalVal << endl;
-    cout << "Global ::globalVal: " << ::globalVal << endl
+    int globalmarks = 50; // Shadows global variable
+    cout << "Local globalmarks: " << globalmarks << endl;
+    cout << "Global ::globalmarks: " << ::globalmarks << endl
          << endl; // Access global scope
 
     cout << "--- 3. Using-Declarations ---" << endl;
     {
-        using Physics::val; // Brings only Physics::val into this local block scope
-        cout << "Unqualified val: " << val << endl;
+        using Physics::marks; // Brings only Physics::marks into this local block scope
+        cout << "Unqualified marks: " << marks << endl;
     }
     cout << endl;
 

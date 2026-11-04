@@ -12,6 +12,28 @@ int main()
     float float_val = 32.34f;
     double double_val = 234.343;
 
+    /*
+    The difference between float and double is primarily about how precisely the number is stored in memory, not how cout displays it.
+    cout by defult display 6 digits after decimal
+
+    float f = 123.456789f;
+    double d = 123.456789;
+
+    cout << f << '\n';
+    cout << d << '\n';
+
+    output
+        123.457
+        123.457
+
+        cout  << setprecision(15);
+        cout will display 15 digits in total
+
+        cout << fixed << setprecision(15);
+        cout will display 15 digits after decimal
+
+    */
+
     int i = 121.921;
     cout << "integer value " << i << endl;
 
@@ -21,8 +43,16 @@ int main()
     // greater number
     cout << "unsigned value " << u_i << endl;
 
-    signed int val = -12232;
-    cout << "signed " << val << endl;
+    // Extraction operator (>>)
+    int in;
+    cin >> in;
+
+    // signed int => signed and signed == int
+    unsigned int val = -12232; // Result = (2^{32} - 12232) = 4294955064
+    cout << "unsigned " << val << endl;
+
+    signed int s_val = -12232; // Result = (2^{32} - 12232) = 4294955064
+    cout << "signed " << s_val << endl;
 
     int num1;
     num1 = 02567; // octal

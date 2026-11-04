@@ -20,8 +20,8 @@ long long modSub(long long a, long long b, long long m)
 // --------------------------------------------------
 // 3. Modular Multiplication
 // --------------------------------------------------
-// __int128 prevents overflow when a and b are
-// close to 10^18.
+
+// __int128 prevents overflow when a and b are close to 10^18.
 long long modMul(long long a, long long b, long long m)
 {
     return (long long)((__int128)(a % m) * (b % m) % m);

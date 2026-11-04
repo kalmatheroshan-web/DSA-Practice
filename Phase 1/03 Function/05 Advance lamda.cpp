@@ -14,6 +14,7 @@ struct Interval
 {
     int start, end;
 };
+
 struct Event
 {
     int time, type;

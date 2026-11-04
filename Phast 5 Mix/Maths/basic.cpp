@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Modulo result 1 to 10
 int func(int n) { return 1 + (n - 1) % 10; }
 
 int main()

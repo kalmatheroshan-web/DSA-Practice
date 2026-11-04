@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cmath>
+#define M_PI 22 / 7
+
 using namespace std;
 
 int main()

@@ -133,7 +133,7 @@ int main()
 
     // ********** XOR **********
     // int num1 = 5, num2 = 12;
-    // cout << (num1 ^ num2) << endl;
+    // cout << (num1 ^ num2) << endl;   
 
     // (1) toggling/filiping the last bit & returns whole num
     // int val = 0b10011;
@@ -189,21 +189,20 @@ int main()
     // cout << "your answer is : " << ans;
 
     /* ceil value
-       ⌈fr / n⌉ = (fr + n - 1) / n
+       ⌈fr / n⌉ = (fr - 1) / n + 1
        ⌈fr / n⌉ = (fr / n) + (fr % n != 0)
     */
 
     int n = 5, m = 3;
 
     // int val = ceil((double)n / m);
-    int val = (n + m - 1) / m;
+    int val = (n - 1) / m + 1;
 
     cout << "ceil value " << val << endl;
 
     /*
         sum without +
         minus without -
-
     */
 
     /*
@@ -235,9 +234,11 @@ int main()
 
 int rightmostPosition(int n)
 {
+    // odd
     if (n & 1)
         return 1;
 
+    // even
     if (n & (n - 1) == 0)
         return log2(n) + 1;
 
@@ -245,116 +246,172 @@ int rightmostPosition(int n)
 }
 
 // sum without + operator
-int sum(int a, int b)
+int sum2(int a, int b)
 {
     while (b)
     {
         int carry = a & b;
+
+        // carry forward
+        carry = carry << 1;
+
         a = a ^ b;
-        b = carry << 1;
+        b = carry;
     }
 
     return a;
 }
 
 // subtraction without - operator
-int menu(int a, int b)
+int sub2(int a, int b)
 {
     while (b)
     {
         int borrow = (~a) & b;
+
+        // borrow from forward
+        borrow = borrow << 1;
+
         a = a ^ b;
-        b = borrow << 1;
+        b = borrow;
     }
 
     return a;
 }
 
+bool isPowerOfFour(int n)
+{
+    if (n <= 0)
+        return false;
+
+    // Check if exactly one bit is set
+    if ((n & (n - 1)) != 0)
+        return false;
+
+    // Check whether the set bit is at an even position
+    return (n & 0x55555555) != 0;
+}
+
 /*
-Bit Manipulation (C++)
-ref : https://www.techiedelight.com/bit-hacks-part-5-find-absolute-value-integer-without-branching/
-├── 1. Binary Basics
-│   ├── Decimal ↔ Binary
-│   ├── Bit Positions
+
+BIT MANIPULATION (C++)
+Reference:
+https://www.techiedelight.com/bit-hacks-part-5-find-absolute-value-integer-without-branching/
+
+
+├── 1. BINARY FUNDAMENTALS
+│   ├── Decimal to Binary
+│   ├── Binary to Decimal
+│   ├── Bit Positions (0-based indexing)
+│   ├── Binary Representation of Negative Numbers
 │   ├── Left Shift (<<)
 │   ├── Right Shift (>>)
 │   └── Powers of Two
 │
-├── 2. AND (&)
-│   ├── Check Even/Odd
-│   ├── Check ith Bit
-│   ├── Clear ith Bit
-│   ├── Clear Last Set Bit
-│   ├── Power of 2
-│   ├── Power of 4
-│   ├── Count Set Bits
-│   ├── Extract Lowest Set Bit
-│   ├── Rightmost Set Bit Position
-│   └── Check Single Set Bit
+├── 2. BITWISE OPERATORS
+│   │
+│   ├── 2.1 AND (&)
+│   │   ├── Check Even / Odd
+│   │   ├── Check ith Bit
+│   │   ├── Clear ith Bit
+│   │   ├── Clear Rightmost Set Bit
+│   │   ├── Find Rightmost Set Bit Position
+│   │   ├── Count Set Bits
+│   │   ├── Check Single Set Bit
+│   │   ├── Check Power of 2
+│   │   └── Check Power of 4
+│   │
+│   ├── 2.2 OR (|)
+│   │   ├── Set ith Bit
+│   │   ├── Set Multiple Bits
+│   │   ├── Combine Flags
+│   │   ├── Permission System
+│   │   └── Turn ON Rightmost Zero Bit
+│   │
+│   ├── 2.3 XOR (^)
+│   │   ├── XOR Properties
+│   │   ├── Toggle ith Bit
+│   │   ├── Toggle Last Bit
+│   │   ├── Find Unique Number
+│   │   ├── Find Missing Number
+│   │   ├── Find Two Unique Numbers
+│   │   ├── Swap Numbers Using XOR
+│   │   ├── XOR from 1 to N
+│   │   ├── XOR in Range [L, R]
+│   │   └── Check Opposite Signs
+│   │
+│   └── 2.4 NOT (~)
+│       ├── Bitwise Complement
+│       ├── Flip All Bits
 │
-├── 3. OR (|)
-│   ├── Set ith Bit
-│   ├── Set Multiple Bits
-│   ├── Combine Flags
-│   ├── Permission System
-│   └── Turn ON Rightmost Zero Bit
-│
-├── 4. XOR (^)
-│   ├── Toggle ith Bit
-│   ├── Toggle Last Bit
-│   ├── Find Unique Number
-│   ├── Find Missing Number
-│   ├── Swap Numbers
-│   ├── XOR from 1 to N
-│   ├── XOR in Range [L,R]
-│   └── Check Opposite Signs
-│
-├── 5. NOT (~)
-│   ├── Complement
-│   ├── -(n+1)
-│   └── Flip All Bits
-│
-├── 6. Shift Operators
+├── 3. SHIFT OPERATIONS
+│   ├── Left Shift (<<)
+│   ├── Right Shift (>>)
 │   ├── Multiply by 2^k
 │   ├── Divide by 2^k
 │   ├── Fast Multiplication
 │   └── Fast Division
 │
-├── 7. Useful Tricks
-│   ├── Print Binary
-│   ├── Binary of Negative Numbers
-│   ├── Absolute Value
-│   ├── Ceil Division
-│   ├── Sum without +
-│   ├── Subtraction without -
-│   ├── Binary Search Mid Overflow Trick
-│   └── Mask Creation
+├── 4. BIT MASKING & USEFUL TRICKS
+│   ├── Print Binary Representation
+│   ├── Create Bit Masks
+│   ├── Set Bits from L to R
+│   ├── Clear Bits from L to R
+│   ├── Lowest Set Bit Mask
+│   ├── Absolute Value Without Branching
+│   ├── Ceiling Division
+│   ├── Sum Without + Operator
+│   ├── Subtraction Without - Operator
+│   └── Binary Search Midpoint Overflow Trick
 │
-├── 8. STL Built-ins
+├── 5. STL & COMPILER BUILT-INS
 │   ├── __builtin_popcount()
 │   ├── __builtin_popcountll()
 │   ├── __builtin_clz()
 │   ├── __builtin_ctz()
 │   ├── __builtin_parity()
-│   └── bitset<32>
+│   ├── bitset<32>
+│   │
+│   └── C++20 <bit> Header
+│       ├── popcount()
+│       ├── countl_zero()
+│       ├── countr_zero()
+│       └── has_single_bit()
 │
-├── 9. Interview Problems
-│   ├── Single Number
-│   ├── Two Unique Numbers
-│   ├── Missing Number
-│   ├── Subsets using Bits
-│   ├── Gray Code
-│   ├── Maximum XOR Pair
-│   ├── Bitmask DP Basics
-│   └── N-Queens Bitmask
+├── 6. INTERVIEW PROBLEMS
+│   │
+│   ├── 6.1 Beginner
+│   │   ├── Check Even or Odd
+│   │   ├── Check ith Bit
+│   │   ├── Set / Clear / Toggle ith Bit
+│   │   ├── Power of Two
+│   │   ├── Power of Four
+│   │   └── Number of Set Bits
+│   │
+│   ├── 6.2 Intermediate
+│   │   ├── Single Number
+│   │   ├── Single Number II
+│   │   ├── Two Unique Numbers
+│   │   ├── Missing Number
+│   │   ├── Reverse Bits
+│   │   ├── Counting Bits
+│   │   ├── Subsets Using Bitmasking
+│   │   └── XOR Queries
+│   │
+│   └── 6.3 Advanced
+│       ├── Gray Code
+│       ├── Maximum XOR Pair
+│       ├── Bitmask DP Basics
+│       └── N-Queens Using Bitmasking
 │
-└── 10. Complexity Summary
-    ├── Check Bit → O(1)
-    ├── Set Bit → O(1)
-    ├── Clear Bit → O(1)
-    ├── Toggle Bit → O(1)
-    ├── XOR Range → O(1)
-    ├── Power of 2 → O(1)
-    ├── Count Bits (loop) → O(number of set bits)
-    └── __builtin_popcount → O(1) (hardware optimized)
+└── 7. TIME & SPACE COMPLEXITY
+    ├── Check Bit           → O(1)
+    ├── Set Bit             → O(1)
+    ├── Clear Bit           → O(1)
+    ├── Toggle Bit          → O(1)
+    ├── Power of 2          → O(1)
+    ├── Power of 4          → O(1)
+    ├── XOR Range           → O(1)
+    ├── Count Bits (loop)   → O(number of set bits)
+    └── Built-in Popcount   → Hardware/compiler optimized
 */

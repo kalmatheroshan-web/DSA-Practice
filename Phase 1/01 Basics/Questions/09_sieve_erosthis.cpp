@@ -63,9 +63,9 @@ void prime_1_n(int n)
 {
     vector<int> ar(n + 1, 1);
 
-    // O( n log(log n) )
+    // O(n log(log n) )
     sieve_erosthis(ar);
-    
+
     for (int i = 1; i <= n; i++)
     {
         if (ar[i])

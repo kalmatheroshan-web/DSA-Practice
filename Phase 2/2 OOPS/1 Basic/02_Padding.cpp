@@ -12,9 +12,9 @@ Packing → Forces the compiler to remove/reduce padding so the structure
 // Normal struct (with padding)
 struct Normal
 {
-    char a;   // 1 byte
-    int b;    // 4 bytes
-    char c;   // 1 byte
+    char a; // 1 byte
+    int b;  // 4 bytes
+    char c; // 1 byte
 };
 
 // Another struct to observe padding
@@ -36,7 +36,7 @@ struct A
     char d;
 };
 
-#pragma pack(pop)   // Restores the previous packing setting
+#pragma pack(pop) // Restores the previous packing setting
 
 struct B
 {

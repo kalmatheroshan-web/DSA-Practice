@@ -1,25 +1,51 @@
 #include <iostream>
 using namespace std;
 
-int power_a_b(int a, int b)
+double power_a_b(double a, int b)
 {
-    int ans = 1;
+    double ans = 1;
     int half = b >> 1;
 
-    // O(b)
+    // O(b)*
     for (int i = 0; i < half; i++)
         ans *= a;
- 
-    return (b % 2) ? ans * ans * a : ans * ans;
+
+    ans = ans * ans;
+    return (b % 2) ? ans * a : ans;
+}
+
+double power_a_b(double a, int b)
+{
+    long long exp = b;
+
+    if (exp < 0)
+    {
+        a = 1.0 / a;
+        exp = -exp; // b are now positive
+    }
+
+    double ans = 1.0;
+
+    while (exp > 0)
+    {
+        if (exp & 1)
+            ans *= a;
+
+        a *= a;
+        exp >>= 1;
+    }
+
+    return ans;
 }
 
 int main()
 {
-    int a, b;
+    double a;
+    int b;
+
     cin >> a >> b;
 
-    int ans = power_a_b(a, b);
-    cout << "Result " << ans;
+    cout << "Result: " << power_a_b(a, b);
 
     return 0;
 }
