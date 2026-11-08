@@ -3,14 +3,12 @@ using namespace std;
 
 void right_rotate(vector<int> &ar, int value = 1)
 {
+    int n = ar.size();
     for (int i = 0; i < value; i++)
     {
         int right = ar.back();
-        int len = ar.size();
-        for (int j = 1; j < ar.size(); j++)
-        {
-            ar[len - j] = ar[len - 1 - j];
-        }
+        for (int j = 1; j < n; j++)
+            ar[n - j] = ar[n - 1 - j];
         ar[0] = right;
     }
 }

@@ -19,23 +19,22 @@ Given two integer arrays nums1 and nums2, return an array of their intersection.
     ans => 3
 */
 
-// Time O(n*m) Space O(min(n,m))
-vector<int> intersection1(vector<int> &ar1, vector<int> &ar2)
+// Time O(n*m)      space O(min(n,m))
+vector<int> intersection1(vector<int> &a, vector<int> &b)
 {
     vector<int> ans;
-    int n = ar1.size();
-    int m = ar2.size();
+    int n = a.size();
+    int m = b.size();
     // O(n*m)
-    for (int i = 0; i < n; i++)
+    for (int val_a : a)
     {
-        int current = ar1[i];
-        for (int j = 0; j < m; j++)
+        for (int val_b : b)
         {
-            if (current == ar2[j])
+            if (val_a == val_b)
             {
-                if (find(ans.begin(), ans.end(), current) == ans.end())
+                if (find(ans.begin(), ans.end(), val_a) == ans.end())
                 {
-                    ans.push_back(current);
+                    ans.push_back(val_a);
                 }
                 break;
             }
@@ -45,7 +44,7 @@ vector<int> intersection1(vector<int> &ar1, vector<int> &ar2)
     return ans;
 }
 
-// time O(nlogn + mlogm + m + n) space O(min(n,m))
+// time O(nlogn + mlogm + m + n)     space O(min(n,m))
 vector<int> intersection2(vector<int> &ar1, vector<int> &ar2)
 {
     vector<int> ans;
@@ -66,7 +65,6 @@ vector<int> intersection2(vector<int> &ar1, vector<int> &ar2)
         }
         else if (ar1[i] > ar2[j])
             j++;
-
         else
             i++;
     }
@@ -74,7 +72,7 @@ vector<int> intersection2(vector<int> &ar1, vector<int> &ar2)
     return ans;
 }
 
-// time O(l1 + l2) space O(1)
+// time O(l1 + l2)  space O(min(n,m))
 vector<int> intersection3(vector<int> &nums1, vector<int> &nums2)
 {
     int occur[1001] = {};
@@ -98,6 +96,27 @@ vector<int> intersection3(vector<int> &nums1, vector<int> &nums2)
         {
             occur[nums2[i]] = 0;
             ans.push_back(nums2[i]);
+        }
+    }
+
+    return ans;
+}
+
+/*
+Same as about but faster in thinking
+    Time: O(n + m)
+    Space: O(n)
+*/
+vector<int> intersection(vector<int> &a, vector<int> &b)
+{
+    unordered_set<int> st(a.begin(), a.end());
+    vector<int> ans;
+
+    for (int x : b)
+    {
+        if (st.erase(x))
+        {
+            ans.push_back(x);
         }
     }
 

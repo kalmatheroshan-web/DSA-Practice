@@ -61,6 +61,7 @@ int missing_num1(vector<int> &arr)
 
 int main()
 {
+    vector<int> ar = {1, 2, 5, 3};
 
     return 0;
 }

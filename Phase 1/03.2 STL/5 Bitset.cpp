@@ -30,13 +30,13 @@ int main()
     bit.reset(1);
     cout << "Reset bit 1:    " << bit << endl;
 
-    // Flip one bit
-    bit.flip(2);
-    cout << "Flip bit 2:     " << bit << endl;
-
     // Flip all bits
     bit.flip();
     cout << "Flip all:       " << bit << endl;
+
+    // Flip one bit
+    bit.flip(2);
+    cout << "Flip bit 2:     " << bit << endl;
 
     // Access bit
     cout << "Bit 2:          " << bit[2] << endl;
