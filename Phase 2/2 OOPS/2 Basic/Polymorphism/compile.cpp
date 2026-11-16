@@ -6,9 +6,8 @@ using namespace std;
 // 2 operator overloading
 
 // 1 fnx overloading
-class math
-{
-public:
+class math {
+  public:
     // fnx overloading .. (name and return type must be same)
     int sum(int a, int b) { return a + b; }
     int sum(int a, double b) { return b - a; }
@@ -16,23 +15,18 @@ public:
 };
 
 // 2 operator overloading
-class dub
-{
-public:
+class dub {
+  public:
     int sum;
     dub(int a) { sum = a; }
-    int operator+(dub &obj)
-    {
-        return this->sum - obj.sum;
-    }
+    int operator+(dub &obj) { return this->sum - obj.sum; }
 };
 
-class Point
-{
-private:
+class Point {
+  private:
     int x, y;
 
-public:
+  public:
     Point(int x = 0, int y = 0) : x(x), y(y) {}
 
     // Friend function to overload <<
@@ -40,20 +34,17 @@ public:
     friend istream &operator>>(istream &is, Point &p);
 };
 
-ostream &operator<<(ostream &os, const Point &p)
-{
+ostream &operator<<(ostream &os, const Point &p) {
     os << "(" << p.x << ", " << p.y << ")";
     return os;
 }
 
-istream &operator>>(istream &is, Point &p)
-{
+istream &operator>>(istream &is, Point &p) {
     is >> p.x >> p.y;
     return is;
 }
 
-int main()
-{
+int main() {
     dub alone(10);
     dub blone(100);
     cout << alone + blone << endl;

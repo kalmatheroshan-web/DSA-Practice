@@ -2,7 +2,6 @@
 using namespace std;
 
 void insertion_asc(int ar[], int len) {
-
     for (int i = 1; i < len; i++) {
         int j = i;
         while (j > 0) {
@@ -20,7 +19,7 @@ void insertion_des(int ar[], int len) {
     for (int i = 1; i < len; i++) {
         int j = i;
         while (j > 0) {
-            if (ar[j] > ar[j - 1])
+            if (ar[j] > ar[j - 1])  
                 swap(ar[j], ar[j - 1]);
             else
                 break;
@@ -44,7 +43,7 @@ void insertion_last(int ar[], int len) {
     }
 }
 
-// swap based
+// shift based
 void insertionSort(int ar[], int n) {
     for (int i = 1; i < n; i++) {
         int temp = ar[i];

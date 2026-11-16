@@ -1,11 +1,10 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 using namespace std;
 
-int main()
-{
+int main() {
     int ar[20] = {};
     cout << sizeof(ar) / sizeof(int) << endl;
     // ---------------- Create ----------------
@@ -44,6 +43,15 @@ int main()
     v.insert(v.begin(), 5);      // Beginning
     v.insert(v.begin() + 2, 15); // Middle
     v.insert(v.end(), 40);       // End
+
+    vector<string> v = {"apple", "banana", "mango"};
+
+    auto it = find(v.begin(), v.end(), "banana");
+
+    if (it != v.end())
+        cout << it - v.begin();
+
+    int index = (it != v.end()) ? it - v.begin() : -1;
 
     cout << "\nAfter insert:\n";
     for (int x : v)
@@ -147,7 +155,8 @@ int main()
     vector<vector<vector<int>>> _v2(15, vector<vector<int>>(20, vector<int>(5)));
 
     // 4D vector: 12x15x20x5
-    vector<vector<vector<vector<int>>>> _v3(12, vector<vector<vector<int>>>(15, vector<vector<int>>(20, vector<int>(5))));
+    vector<vector<vector<vector<int>>>> _v3(
+        12, vector<vector<vector<int>>>(15, vector<vector<int>>(20, vector<int>(5))));
 
     cout << _v3[0][0][0].size() << endl;
 

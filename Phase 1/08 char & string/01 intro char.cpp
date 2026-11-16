@@ -99,7 +99,7 @@ int main()
 
     // 5. Searching: strchr (character) & strstr (substring)
     char sample[] = "Hello World";
-    char *charPos = strchr(sample, 'o');    // Points to first 'o'
+    char *charPos = strchr(sample, 'o');    // Points to first 'o
     char *subPos = strstr(sample, "World"); // Points to "World"
 
     if (charPos)

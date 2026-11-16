@@ -8,44 +8,25 @@ Note :
 
 */
 
-class Animal
-{
-public:
-    virtual void speak()
-    {
-        cout << "Hu Hu" << endl;
-    }
+class Animal {
+  public:
+    virtual void speak() { cout << "Hu Hu" << endl; }
 };
 
-class Dog : public Animal
-{
-public:
-    void speak()
-    {
-        cout << "bark" << endl;
-    }
+class Dog : public Animal {
+  public:
+    void speak() { cout << "bark" << endl; }
 
-    void walk()
-    {
-        cout << "walking.." << endl;
-    }
+    void walk() { cout << "walking.." << endl; }
 };
-class Cat : public Animal
-{
-public:
-    void speak()
-    {
-        cout << "Mi Mu" << endl;
-    }
+class Cat : public Animal {
+  public:
+    void speak() { cout << "Mi Mu" << endl; }
 
-    void walk()
-    {
-        cout << "walking.." << endl;
-    }
+    void walk() { cout << "walking.." << endl; }
 };
 
-int main()
-{
+int main() {
     // Upcasting ..
     Animal *ani = new Dog();
 

@@ -9,51 +9,42 @@ using namespace std;
     are trying to make all the data member as private
 */
 
-class customer
-{
+class customer {
     string name;
     int age, balance;
     static int total_amount;
 
-public:
-    customer(string name, int age, int balance)
-    {
+  public:
+    customer(string name, int age, int balance) {
         this->name = name;
         this->age = age;
         this->balance = balance;
         total_amount += balance;
     }
 
-    void deposite(int amount)
-    {
-        if (amount > 0)
-        {
+    void deposite(int amount) {
+        if (amount > 0) {
             balance += amount;
             total_amount += amount;
         }
     }
 
-    void widrawal(int amount)
-    {
-        if (balance - amount >= 0)
-        {
+    void widrawal(int amount) {
+        if (balance - amount >= 0) {
             balance -= amount;
             total_amount -= amount;
-        }
-        else
+        } else
             cout << "Balance is not sufficient" << endl;
     }
 
-    void changeAge(int age)
-    {
+    void changeAge(int age) {
         if (0 < age && age <= 100)
             this->age = age;
         else
             cout << "Invalid age" << endl;
     }
 
-    void mini_statement()
-    {
+    void mini_statement() {
         cout << "Name " << this->name << endl;
         cout << "Age " << this->age << endl;
         cout << "Balance " << this->balance << endl;
@@ -63,8 +54,7 @@ public:
 
 int customer::total_amount = 0;
 
-int main()
-{
+int main() {
 
     customer rohan("Rohan", 12, 1000);
     rohan.deposite(1000);

@@ -1,58 +1,50 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
-void bubble_asc(int ar[], int len)
-{
-
-    for (int i = 0; i < len - 1; i++)
-    {
-        bool flag = true;
-        for (int j = 0; j < len - 1 - i; j++)
-        {
-            if (ar[j] > ar[j + 1])
-            {
+void bubble_asc(vector<int> &ar) {
+    int n = ar.size();
+    for (int i = 0; i < n - 1; i++) {
+        bool swapped = false;
+        for (int j = 0; j < n - i - 1; j++) {
+            if (ar[j] > ar[j + 1]) {
                 swap(ar[j], ar[j + 1]);
-                flag = false;
+                swapped = true;
             }
         }
-        if (flag)
+        if (swapped == false) {
             break;
+        }
     }
 }
 
-void bubble_des(int ar[], int len)
-{
-    for (int i = 0; i < len - 1; i++)
-    {
-        bool flag = true;
-        for (int j = 0; j < len - 1 - i; j++)
-        {
-            if (ar[j] < ar[j + 1])
-            {
+void bubble_des(vector<int> &ar) {
+    int n = ar.size();
+    for (int i = 0; i < n - 1; i++) {
+        bool swapped = false;
+        for (int j = 0; j < n - i - 1; j++) {
+            if (ar[j] < ar[j + 1]) {
                 swap(ar[j], ar[j + 1]);
-                flag = false;
+                swapped = true;
             }
         }
-        if (flag)
+        if (swapped == false) {
             break;
+        }
     }
 }
 
-void bubble_last(int ar[], int len)
-{
-
-    for (int i = 0; i < len - 1; i++)
-    {
-        bool flag = true;
-        for (int j = len - 1; j > i; j--)
-        {
-            if (ar[j - 1] > ar[j])
-            {
+void bubble_last(vector<int> &ar) {
+    int n = ar.size();
+    for (int i = 0; i < n - 1; i++) {
+        bool swapped = false;
+        for (int j = n - 1; j > i; j--) {
+            if (ar[j - 1] > ar[j]) {
                 swap(ar[j - 1], ar[j]);
-                flag = false;
+                swapped = true;
             }
         }
-        if (flag)
+        if (swapped == false)
             break;
     }
 }
@@ -63,16 +55,15 @@ void bubble_last(int ar[], int len)
         stable : yes
 */
 
-int main()
-{
-    int ar[5] = {7, 4, 2, 3, 5};
-    int len = sizeof(ar) / sizeof(int);
+int main() {
+    vector<int> ar = {7, 4, 2, 3, 5};
 
-    bubble_last(ar, len);
+    bubble_last(ar);
 
     cout << "Printing array " << endl;
-    for (int i = 0; i < len; i++)
-        cout << ar[i] << " ";
+    for (int val : ar)
+        cout << val << " ";
+    cout << endl;
 
     return 0;
 }

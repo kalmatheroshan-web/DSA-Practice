@@ -1,34 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class animal
-{
-protected:
+class animal {
+  protected:
     int age;
 
-public:
-    animal()
-    {
-        cout << "Animal constructor .. " << endl;
-    }
-    void see()
-    {
-        cout << "Animal can see" << endl;
-    }
+  public:
+    animal() { cout << "Animal constructor .. " << endl; }
+    void see() { cout << "Animal can see" << endl; }
 };
 
-class dog : protected animal
-{
-public:
-    void bark()
-    {
+class dog : protected animal {
+  public:
+    void bark() {
         cout << "barking .." << endl;
         see();
     }
 };
 
-int main()
-{
+int main() {
 
     dog d1;
     d1.bark();

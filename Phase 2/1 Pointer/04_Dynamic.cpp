@@ -9,7 +9,6 @@ using namespace std;
      - Default value is garbage
      - There is no memory management done by the compiler here
      - so use delete keyword here
-
 */
 
 int main()

@@ -3,8 +3,6 @@ using namespace std;
 /*
     By defualt all the member and function are private
 */
-
-
 class student
 {
 public:
@@ -31,6 +29,7 @@ class box
     int width;
 
 public:
+
     // setter
     void setLen(int l) { length = l; }
     void setHei(int h) { height = h; }
