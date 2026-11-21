@@ -5,12 +5,10 @@ using namespace std;
 */
 
 // Print in row major
-void pr_row(int ar[][3], int row, int col)
-{
+void pr_row(int ar[][3], int row, int col) {
     cout << "\nRow Major" << endl;
 
-    for (int i = 0; i < row; i++)
-    {
+    for (int i = 0; i < row; i++) {
         for (int j = 0; j < col; j++)
             cout << ar[i][j] << " ";
         cout << endl;
@@ -18,12 +16,10 @@ void pr_row(int ar[][3], int row, int col)
 }
 
 // Print in row major
-void pr_row(int ar[][4], int row, int col)
-{
+void pr_row(int ar[][4], int row, int col) {
     cout << "\nRow Major" << endl;
 
-    for (int i = 0; i < row; i++)
-    {
+    for (int i = 0; i < row; i++) {
         for (int j = 0; j < col; j++)
             cout << ar[i][j] << " ";
         cout << endl;
@@ -31,11 +27,9 @@ void pr_row(int ar[][4], int row, int col)
 }
 
 // Print in col major
-void pr_col(int ar[][3], int row, int col)
-{
+void pr_col(int ar[][3], int row, int col) {
     cout << "\nColumn Major" << endl;
-    for (int i = 0; i < col; i++)
-    {
+    for (int i = 0; i < col; i++) {
         for (int j = 0; j < row; j++)
             cout << ar[j][i] << " ";
         cout << endl;
@@ -43,8 +37,7 @@ void pr_col(int ar[][3], int row, int col)
 }
 
 // Search in array
-bool search_ar(int ar[][3], int ele, int row, int col)
-{
+bool search_ar(int ar[][3], int ele, int row, int col) {
     for (int i = 0; i < row; i++)
         for (int j = 0; j < col; j++)
             if (ar[i][j] == ele)
@@ -53,25 +46,21 @@ bool search_ar(int ar[][3], int ele, int row, int col)
 }
 
 // Add two matrix
-void add_two(int ar[][3], int br[][3], int res[][3], int row, int col)
-{
+void add_two(int ar[][3], int br[][3], int res[][3], int row, int col) {
     for (int i = 0; i < row; i++)
         for (int j = 0; j < col; j++)
             res[i][j] = ar[i][j] + br[i][j];
 }
 
 // Print row index with max sum
-int max_row_sum(int ar[][4], int row, int col)
-{
+int max_row_sum(int ar[][4], int row, int col) {
     int maxi_sum = INT32_MIN, index = -1;
-    for (int i = 0; i < row; i++)
-    {
+    for (int i = 0; i < row; i++) {
         int total = 0;
         for (int j = 0; j < col; j++)
             total += ar[i][j];
 
-        if (total > maxi_sum)
-        {
+        if (total > maxi_sum) {
             maxi_sum = total;
             index = i;
         }
@@ -80,35 +69,30 @@ int max_row_sum(int ar[][4], int row, int col)
 }
 
 // Diagonal sum
-void diagonal_sum(int ar[][4], int row, int col)
-{
+void diagonal_sum(int ar[][4], int row, int col) {
 
     int i = 0;
     int sum = 0, sec_sum = 0;
-    while (i < row)
-    {
+    while (i < row) {
         sum += ar[i][i];
         sec_sum += ar[i][col - i - 1];
         i++;
     }
-    cout << "first " << sum << endl
-         << "second " << sec_sum << endl;
+    cout << "first " << sum << endl << "second " << sec_sum << endl;
 }
 
 // Reverse each row
-void reverse_row(int ar[][4], int row, int col)
-{
-    for (int i = 0; i < row; i++)
-    {
+void reverse_row(int ar[][4], int row, int col) {
+    for (int i = 0; i < row; i++) {
         int s = 0, e = col - 1;
-        while (s < e)
-        {
+        while (s < e) {
             swap(ar[i][s++], ar[i][e--]);
         }
     }
 }
-int main()
-{
+
+
+int main() {
     int ar[4][3] = {{1, 2, 3}, {10, 20, 30}, {100, 200, 300}, {1000, 2000, 3000}};
     cout << "row : " << sizeof(ar) / sizeof(ar[0]) << endl;
     cout << "col : " << sizeof(ar[0]) / sizeof(int) << endl;
@@ -135,8 +119,7 @@ int main()
 
     int max_sum[][4] = {3, 4, 7, 18, 2, 8, 3, 9, 5, 4, 2, 2, 7, 3, 0, 8, 2, 8, 9, 101};
     int answer = max_row_sum(max_sum, 5, 4);
-    cout << "max index with row " << answer << endl
-         << endl;
+    cout << "max index with row " << answer << endl << endl;
 
     int arr[4][4] = {5, 8, 3, 9, 6, 2, 8, 4, 5, 3, 2, 2, 2, 8, 1, 9};
     diagonal_sum(arr, 4, 4);
