@@ -17,28 +17,24 @@ Input: arr[] = [3, 3, 3, 3]
 Output: [0, 0, 4, 0]
 */
 
-vector<int> frequencyCount(vector<int> &ar)
-{
+vector<int> frequencyCount(vector<int> &ar) {
 
     int n = ar.size();
-    for (int i = 0; i < n; i++)
-    {
+    for (int i = 0; i < n; i++) {
         ar[i]--;
         int inx = ar[i] % n;
         ar[inx] += n;
     }
 
     vector<int> ans;
-    for (int val : ar)
-    {
+    for (int val : ar) {
         ans.push_back(val / n);
     }
     return ans;
 }
-int main()
-{
+int main() {
 
-    vector<int> ar = {2, 3, 2, 3, 5};
+    vector<int> ar = { 2, 3, 2, 3, 5 };
     // vector<int> ar = {3, 3, 3, 3};
 
     vector<int> res = frequencyCount(ar);

@@ -49,7 +49,12 @@ void pr_row(vector<vector<int>> &ar) {
 }
 
 int main() {
-    vector<vector<int>> ar = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
+    vector<vector<int>> ar = {
+        { 1,  2,  3,  4  },
+        { 5,  6,  7,  8  },
+        { 9,  10, 11, 12 },
+        { 13, 14, 15, 16 }
+    };
 
     int row = ar.size(), col = ar[0].size();
     pr_row(ar);

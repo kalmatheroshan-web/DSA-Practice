@@ -91,9 +91,13 @@ void reverse_row(int ar[][4], int row, int col) {
     }
 }
 
-
 int main() {
-    int ar[4][3] = {{1, 2, 3}, {10, 20, 30}, {100, 200, 300}, {1000, 2000, 3000}};
+    int ar[4][3] = {
+        { 1,    2,    3    },
+        { 10,   20,   30   },
+        { 100,  200,  300  },
+        { 1000, 2000, 3000 }
+    };
     cout << "row : " << sizeof(ar) / sizeof(ar[0]) << endl;
     cout << "col : " << sizeof(ar[0]) / sizeof(int) << endl;
 
@@ -109,22 +113,22 @@ int main() {
     else
         cout << "No" << endl;
 
-    int a[][3] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
-    int b[][3] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120};
+    int a[][3] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+    int b[][3] = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120 };
 
     int result[][3] = {};
     add_two(a, b, result, row, col);
 
     pr_row(result, 4, 3);
 
-    int max_sum[][4] = {3, 4, 7, 18, 2, 8, 3, 9, 5, 4, 2, 2, 7, 3, 0, 8, 2, 8, 9, 101};
+    int max_sum[][4] = { 3, 4, 7, 18, 2, 8, 3, 9, 5, 4, 2, 2, 7, 3, 0, 8, 2, 8, 9, 101 };
     int answer = max_row_sum(max_sum, 5, 4);
     cout << "max index with row " << answer << endl << endl;
 
-    int arr[4][4] = {5, 8, 3, 9, 6, 2, 8, 4, 5, 3, 2, 2, 2, 8, 1, 9};
+    int arr[4][4] = { 5, 8, 3, 9, 6, 2, 8, 4, 5, 3, 2, 2, 2, 8, 1, 9 };
     diagonal_sum(arr, 4, 4);
 
-    int rev[][4] = {2, 3, 4, 5, 1, 2, 6, 8, 4, 9, 3, 2};
+    int rev[][4] = { 2, 3, 4, 5, 1, 2, 6, 8, 4, 9, 3, 2 };
     reverse_row(rev, 3, 4);
     pr_row(rev, 3, 4);
 }

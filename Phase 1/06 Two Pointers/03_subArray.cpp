@@ -16,8 +16,7 @@ Time: O(N³)
 Extra space: O(1)
 */
 
-void subArray(vector<int> &ar)
-{
+void subArray(vector<int> &ar) {
     int n = ar.size();
 
     for (int i = 0; i < n; i++) // start
@@ -34,9 +33,7 @@ void subArray(vector<int> &ar)
     }
 }
 
-
-int main()
-{
-    vector<int> ar = {4, 3, 7, 2, 10, 8};
+int main() {
+    vector<int> ar = { 4, 3, 7, 2, 10, 8 };
     subArray(ar);
 }

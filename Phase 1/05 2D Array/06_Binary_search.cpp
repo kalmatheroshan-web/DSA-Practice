@@ -8,12 +8,9 @@ using namespace std;
 // Space Complexity: O(1)
 // ============================================================
 
-void printMatrix(const vector<vector<int>> &mat)
-{
-    for (const auto &row : mat)
-    {
-        for (const auto &val : row)
-        {
+void printMatrix(const vector<vector<int>> &mat) {
+    for (const auto &row : mat) {
+        for (const auto &val : row) {
             cout << val << " ";
         }
 
@@ -30,17 +27,13 @@ void printMatrix(const vector<vector<int>> &mat)
 // Space Complexity: O(1)
 // ============================================================
 
-bool linearSearch(const vector<vector<int>> &ar, int x)
-{
+bool linearSearch(const vector<vector<int>> &ar, int x) {
     int row = ar.size();
     int col = ar[0].size();
 
-    for (int i = 0; i < row; i++)
-    {
-        for (int j = 0; j < col; j++)
-        {
-            if (ar[i][j] == x)
-            {
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            if (ar[i][j] == x) {
                 return true;
             }
         }
@@ -59,13 +52,11 @@ bool linearSearch(const vector<vector<int>> &ar, int x)
 // Space Complexity: O(1)
 // ============================================================
 
-bool binarySearchEachRow(const vector<vector<int>> &ar, int x)
-{
+bool binarySearchEachRow(const vector<vector<int>> &ar, int x) {
     int row = ar.size();
     int col = ar[0].size();
 
-    for (int i = 0; i < row; i++)
-    {
+    for (int i = 0; i < row; i++) {
         // Check whether x can possibly exist in this row.
         //
         // Example:
@@ -76,27 +67,21 @@ bool binarySearchEachRow(const vector<vector<int>> &ar, int x)
         //
         // So perform binary search in this row.
 
-        if (ar[i][0] <= x && x <= ar[i][col - 1])
-        {
+        if (ar[i][0] <= x && x <= ar[i][col - 1]) {
             int start = 0;
             int end = col - 1;
 
-            while (start <= end)
-            {
+            while (start <= end) {
                 int mid = start + (end - start) / 2;
 
-                if (ar[i][mid] == x)
-                {
+                if (ar[i][mid] == x) {
                     return true;
                 }
 
-                if (ar[i][mid] > x)
-                {
+                if (ar[i][mid] > x) {
                     // x is on the left side
                     end = mid - 1;
-                }
-                else
-                {
+                } else {
                     // x is on the right side
                     start = mid + 1;
                 }
@@ -221,34 +206,28 @@ Space Complexity:
 ============================================================
 */
 
-bool binarySearchSortedMatrix(const vector<vector<int>> &ar, int x)
-{
+bool binarySearchSortedMatrix(const vector<vector<int>> &ar, int x) {
     int row = ar.size();
     int col = ar[0].size();
 
     int start = 0;
     int end = row * col - 1;
 
-    while (start <= end)
-    {
+    while (start <= end) {
         int mid = start + (end - start) / 2;
 
         // Convert 1D index into 2D coordinates.
         int r = mid / col;
         int c = mid % col;
 
-        if (ar[r][c] == x)
-        {
+        if (ar[r][c] == x) {
             return true;
         }
 
-        if (ar[r][c] > x)
-        {
+        if (ar[r][c] > x) {
             // x is on the left side.
             end = mid - 1;
-        }
-        else
-        {
+        } else {
             // x is on the right side.
             start = mid + 1;
         }
@@ -256,14 +235,13 @@ bool binarySearchSortedMatrix(const vector<vector<int>> &ar, int x)
 
     return false;
 }
-int main()
-{
-    vector<vector<int>> ar =
-        {
-            {1, 2, 3, 4},
-            {5, 6, 7, 8},
-            {9, 10, 11, 12},
-            {13, 14, 15, 16}};
+int main() {
+    vector<vector<int>> ar = {
+        { 1,  2,  3,  4  },
+        { 5,  6,  7,  8  },
+        { 9,  10, 11, 12 },
+        { 13, 14, 15, 16 }
+    };
 
     int x = 6;
 
@@ -281,9 +259,7 @@ int main()
 
     cout << "\nLinear Search:" << endl;
 
-    cout << x << " is present: "
-         << linearSearch(ar, x)
-         << endl;
+    cout << x << " is present: " << linearSearch(ar, x) << endl;
 
     // --------------------------------------------------------
     // Binary Search in Each Row
@@ -291,9 +267,7 @@ int main()
 
     cout << "\nBinary Search in Each Row:" << endl;
 
-    cout << x << " is present: "
-         << binarySearchEachRow(ar, x)
-         << endl;
+    cout << x << " is present: " << binarySearchEachRow(ar, x) << endl;
 
     // --------------------------------------------------------
     // Binary Search on Entire Matrix
@@ -301,9 +275,7 @@ int main()
 
     cout << "\nBinary Search on Sorted Matrix:" << endl;
 
-    cout << x << " is present: "
-         << binarySearchSortedMatrix(ar, x)
-         << endl;
+    cout << x << " is present: " << binarySearchSortedMatrix(ar, x) << endl;
 
     return 0;
 }

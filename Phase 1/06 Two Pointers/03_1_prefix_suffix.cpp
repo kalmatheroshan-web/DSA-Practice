@@ -1,8 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void prefix_sum(vector<int> &ar, vector<int> &pre)
-{
+void prefix_sum(vector<int> &ar, vector<int> &pre) {
     int n = ar.size();
     pre[0] = ar[0];
 
@@ -10,8 +9,7 @@ void prefix_sum(vector<int> &ar, vector<int> &pre)
         pre[i] = pre[i - 1] + ar[i];
 }
 
-void suffix_sum(vector<int> &ar, vector<int> &suf)
-{
+void suffix_sum(vector<int> &ar, vector<int> &suf) {
     int n = ar.size();
     suf[n - 1] = ar[n - 1];
 
@@ -19,9 +17,8 @@ void suffix_sum(vector<int> &ar, vector<int> &suf)
         suf[i] = suf[i + 1] + ar[i];
 }
 
-int main()
-{
-    vector<int> ar = {6, 4, 5, -3, 2, 8};
+int main() {
+    vector<int> ar = { 6, 4, 5, -3, 2, 8 };
     int n = ar.size();
 
     vector<int> prefix(n);

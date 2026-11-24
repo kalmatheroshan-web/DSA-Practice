@@ -1,56 +1,51 @@
+
 #include <bits/stdc++.h>
 using namespace std;
-/*
 
-Given an unsorted array arr[] of size n, containing elements from the range 1 to n, it is known that one number in this range is missing, and another number occurs twice in the array, find both the duplicate number and the missing number.
-
-    Input: arr[] = [1, 3, 3]
-    Output: [3, 2]
-    Explanation: Repeating number is 3 and the missing number is 2.
-
-    Input: arr[] = [4, 3, 6, 2, 1, 1]
-    Output: [1, 5]
-    Explanation: Repeating number is 1 and the missing number is 5.
-
-*/
-
-// time O(1) space O(1)
-vector<int> findRepeatAndMissing(vector<int> &ar)
-{
+vector<int> findMissingAndRepeatedValues(vector<vector<int>> &ar) {
+    int rep = 0, mis = 0;
     int n = ar.size();
 
-    // Step 1: Decrease all elements by 1 (convert to 0-based indexing)
-    for (int i = 0; i < n; i++)
-        ar[i]--;
+    // Mark visited elements
+    for (auto &row : ar) {
+        for (int val : row) {
+            int inx = abs(val) - 1;
 
-    // Step 2: Increase count
-    for (int i = 0; i < n; i++)
-    {
-        int inx = ar[i] % n; // get original value
-        ar[inx] += n;
+            int r = inx / n;
+            int c = inx % n;
+
+            if (ar[r][c] < 0)
+                rep = inx + 1;
+            else
+                ar[r][c] = -ar[r][c];
+        }
     }
 
-    int missing = 0, repeat = 0;
+    // Find missing element
+    for (int inx = 0; inx < n * n; inx++) {
+        int r = inx / n;
+        int c = inx % n;
 
-    // Step 3: Check frequencies
-    for (int i = 0; i < n; i++)
-    {
-        int occur = ar[i] / n;
-        if (occur > 1)
-            repeat = i + 1;
-        else if (occur == 0)
-            missing = i + 1;
+        if (ar[r][c] > 0) {
+            mis = inx + 1;
+            break;
+        }
     }
 
-    return {repeat, missing};
+    return { rep, mis };
 }
 
-int main()
-{
-    vector<int> ar = {4, 3, 6, 2, 1, 1};
+int main() {
+    vector<vector<int>> ar = {
+        { 4, 3, 6 },
+        { 2, 1, 1 },
+        { 7, 8, 9 }
+    };
 
-    vector<int> ans = findRepeatAndMissing(ar);
+    vector<int> ans = findMissingAndRepeatedValues(ar);
 
     cout << "Repeating number: " << ans[0] << endl;
     cout << "Missing number: " << ans[1] << endl;
+
+    return 0;
 }

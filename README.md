@@ -31,7 +31,7 @@ My goal is simple: **understand the logic, write the code, learn from mistakes, 
 - [ ] **Dynamic Programming**
 - [ ] **Advanced Problem Solving & Revision**
 
-*Progress is updated as I work through each topic.*
+_Progress is updated as I work through each topic._
 
 ## 🧠 My Problem-Solving Workflow
 
