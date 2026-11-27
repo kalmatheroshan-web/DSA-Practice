@@ -8,10 +8,9 @@ using namespace std;
     Time  : O(n)
     Space : O(1)
 */
-int searchBruteForce(const vector<int> &arr, int target)
-{
-    for (int i = 0; i < arr.size(); ++i)
-    {
+int searchBruteForce(const vector<int> &arr, int target) {
+    // linear search
+    for (int i = 0; i < arr.size(); ++i) {
         if (arr[i] == target)
             return i;
     }
@@ -27,54 +26,42 @@ int searchBruteForce(const vector<int> &arr, int target)
     Idea:
     At every step, one half of the array is sorted.
 */
-int search(const vector<int> &arr, int target)
-{
-    int left = 0;
-    int right = arr.size() - 1;
+int search(vector<int> &ar, int tar) {
+    int s = 0, e = ar.size() - 1;
 
-    while (left <= right)
-    {
-        int mid = left + (right - left) / 2;
-
-        // Target found
-        if (arr[mid] == target)
+    while (s <= e) {
+        int mid = s + (e - s) / 2;
+        int ele = ar[mid];
+        if (ele == tar)
             return mid;
 
-        // Left half is sorted
-        if (arr[left] <= arr[mid])
-        {
-            // Target is inside the sorted left half
-            if (arr[left] <= target && target < arr[mid])
-                right = mid - 1;
-            else
-                left = mid + 1;
-        }
+        // correct part
+        bool cur_left = ar[0] <= ele;
+        bool tar_left = ar[0] <= tar;
 
-        // Right half is sorted
+        if (cur_left == tar_left) {
+            if (tar < ele)
+                e = mid - 1;
+            else
+                s = mid + 1;
+        }
+        // set the tar part
+        else if (cur_left)
+            s = mid + 1;
         else
-        {
-            // Target is inside the sorted right half
-            if (arr[mid] < target && target <= arr[right])
-                left = mid + 1;
-            else
-                right = mid - 1;
-        }
+            e = mid - 1;
     }
-
     return -1;
 }
 
-int main()
-{
-    vector<int> arr = {4, 5, 6, 7, 0, 1, 2};
+int main() {
+    vector<int> arr = { 4, 5, 6, 7, 0, 1, 2 };
 
     int target = 0;
 
-    cout << "Brute Force : "
-         << searchBruteForce(arr, target) << '\n';
+    cout << "Brute Force : " << searchBruteForce(arr, target) << '\n';
 
-    cout << "Binary Search : "
-         << search(arr, target) << '\n';
+    cout << "Binary Search : " << search(arr, target) << '\n';
 
     return 0;
 }

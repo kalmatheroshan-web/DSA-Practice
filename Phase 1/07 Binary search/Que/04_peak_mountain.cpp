@@ -23,16 +23,16 @@ using namespace std;
    Space : O(1)
    ========================================================= */
 
-int peakIndexBruteForce(const vector<int> &arr)
-{
-    int n = arr.size();
+int peakIndexBruteForce(const vector<int> &arr) {
+    const int n = arr.size();
+    if (n == 0)
+        return -1;
 
-    for (int i = 1; i < n - 1; ++i)
-    {
-        bool left = arr[i] > arr[i - 1];
-        bool right = arr[i] > arr[i + 1];
-        
-        if (left && right)
+    for (int i = 0; i < n; i++) {
+        bool leftOk = (i == 0) || arr[i - 1] < arr[i];
+        bool rightOk = (i == n - 1) || arr[i] > arr[i + 1];
+
+        if (leftOk && rightOk)
             return i;
     }
 
@@ -45,13 +45,11 @@ int peakIndexBruteForce(const vector<int> &arr)
    Space : O(1)
    ========================================================= */
 
-int peakIndexBinarySearch(const vector<int> &arr)
-{
+int peakIndexBinarySearch(const vector<int> &arr) {
     int left = 0;
     int right = arr.size() - 1;
 
-    while (left < right)
-    {
+    while (left < right) {
         int mid = left + (right - left) / 2;
 
         /*
@@ -67,8 +65,8 @@ int peakIndexBinarySearch(const vector<int> &arr)
 
                 Peak is to the RIGHT.
         */
-        if (arr[mid] < arr[mid + 1])
-        {
+        bool rising = arr[mid] < arr[mid + 1];
+        if (rising) {
             left = mid + 1;
         }
         /*
@@ -86,8 +84,7 @@ int peakIndexBinarySearch(const vector<int> &arr)
 
                 Therefore we keep mid.
         */
-        else
-        {
+        else {
             right = mid;
         }
     }
@@ -96,17 +93,12 @@ int peakIndexBinarySearch(const vector<int> &arr)
     return left;
 }
 
-int main()
-{
-    vector<int> arr = {0, 2, 5, 8, 12, 9, 4};
+int main() {
+    vector<int> arr = { 0, 2, 5, 8, 12, 9, 4 };
 
-    cout << "Brute Force: "
-         << peakIndexBruteForce(arr)
-         << '\n';
+    cout << "Brute Force: " << peakIndexBruteForce(arr) << '\n';
 
-    cout << "Binary Search: "
-         << peakIndexBinarySearch(arr)
-         << '\n';
+    cout << "Binary Search: " << peakIndexBinarySearch(arr) << '\n';
 
     return 0;
 }
