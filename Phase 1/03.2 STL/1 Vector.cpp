@@ -11,7 +11,7 @@ int main() {
     vector<int> v;         // Empty
     vector<int> v1(5);     // {0,0,0,0,0}
     vector<int> v2(5, 10); // {10,10,10,10,10}
-    vector<int> v3 = {1, 2, 3, 4, 5};
+    vector<int> v3 = { 1, 2, 3, 4, 5 };
     vector<int> copy(v3); // Copy
 
     // ---------------- Add ----------------
@@ -44,7 +44,7 @@ int main() {
     v.insert(v.begin() + 2, 15); // Middle
     v.insert(v.end(), 40);       // End
 
-    vector<string> v = {"apple", "banana", "mango"};
+    vector<string> v = { "apple", "banana", "mango" };
 
     auto it = find(v.begin(), v.end(), "banana");
 
@@ -88,8 +88,8 @@ int main() {
     cout << "\nSize after clear: " << v.size() << endl;
 
     // ---------------- Swap ----------------
-    vector<int> a = {1, 2, 3};
-    vector<int> b = {10, 20};
+    vector<int> a = { 1, 2, 3 };
+    vector<int> b = { 10, 20 };
 
     a.swap(b);
 
@@ -111,7 +111,7 @@ int main() {
     cout << "Capacity after shrink: " << cap.capacity() << endl;
 
     // ---------------- Sort ----------------
-    vector<int> s = {5, 1, 4, 3, 2};
+    vector<int> s = { 5, 1, 4, 3, 2 };
 
     sort(s.begin(), s.end());
 
@@ -160,7 +160,7 @@ int main() {
 
     cout << _v3[0][0][0].size() << endl;
 
-    vector<int> ans = {10, 20, 30, 40, 50};
+    vector<int> ans = { 10, 20, 30, 40, 50 };
     cout << "Before " << endl;
     for (int ele : ans)
         cout << ele << " ";
@@ -183,12 +183,12 @@ int main() {
     cout << vacc.size() << endl;
 
     // insert
-    vector<int> vr = {2, 3, 5};
+    vector<int> vr = { 2, 3, 5 };
     vr.insert(vr.begin() + 2, 10);
     for (auto ele : vr)
         cout << ele << endl;
 
-    vector<int> v = {1, 2, 3, 4, 5};
+    vector<int> v = { 1, 2, 3, 4, 5 };
     int mini = *min_element(v.begin(), v.end());
     int maxi = *max_element(v.begin(), v.end());
 

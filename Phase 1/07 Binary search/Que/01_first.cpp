@@ -9,7 +9,7 @@ void last_occur(vector<int> &ar, int len, int ele, vector<int> &ans)
 
     while (start <= end)
     {
-        int mid = end + (start - end) / 2;
+        int mid = end + (start - end) / 2; 
 
         if (ar[mid] == ele)
         {
