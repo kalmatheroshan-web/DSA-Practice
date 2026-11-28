@@ -1,6 +1,6 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
-#include <unordered_set>
 
 using namespace std;
 
@@ -15,21 +15,16 @@ and an integer k, find the k-th positive integer that is missing from this array
 // Space Complexity: O(1)
 // ============================================================
 
-int linearSearchApproach(const vector<int> &ar, int k)
-{
+int linearSearchApproach(const vector<int> &ar, int k) {
     int current = 1;
     int i = 0;
     int missingCount = 0;
 
-    while (true)
-    {
+    while (true) {
         // Current number exists in the aray
-        if (i < ar.size() && ar[i] == current)
-        {
+        if (i < ar.size() && ar[i] == current) {
             i++;
-        }
-        else
-        {
+        } else {
             // Current number is missing
             missingCount++;
 
@@ -47,27 +42,16 @@ int linearSearchApproach(const vector<int> &ar, int k)
 // Space Complexity: O(N)
 // ============================================================
 
-int hashSetApproach(const vector<int> &ar, int k)
-{
-    unordered_set<int> s(ar.begin(), ar.end());
-
-    int missingCount = 0;
-    int current = 1;
-
-    while (true)
-    {
-        if (s.find(current) == s.end())
-        {
-            missingCount++;
-
-            if (missingCount == k)
-            {
-                return current;
-            }
-        }
-
-        current++;
+int hashSetApproach(const vector<int> &ar, int k) {
+    int cur = 1, miss = 0;
+    while (true) {
+        if (find(ar.begin(), ar.end(), cur) == ar.end())
+            miss++;
+        if (miss == k)
+            return cur;
+        cur++;
     }
+    return ar.back() + k;
 }
 
 /*
@@ -106,7 +90,6 @@ For the above array:
     arr[i]:         2   3   4   7  11  12
 
     missing_count:  1   1   1   3   6   6
-
 
 Example:
 
@@ -199,8 +182,7 @@ Therefore:
 // Space Complexity: O(1)
 // ============================================================
 
-int binarySearchApproach(const vector<int> &arr, int k)
-{
+int binarySearchApproach(const vector<int> &arr, int k) {
     int left = 0;
     int right = arr.size() - 1;
 
@@ -208,22 +190,18 @@ int binarySearchApproach(const vector<int> &arr, int k)
     // ans will remain arr.size().
     int ans = arr.size();
 
-    while (left <= right)
-    {
+    while (left <= right) {
         int mid = left + (right - left) / 2;
 
         // Number of missing positive integers before arr[mid]
         int missingCount = arr[mid] - (mid + 1);
 
-        if (missingCount >= k)
-        {
+        if (missingCount >= k) {
             // This index could contain the answer.
             // Try to find an earlier index.
             ans = mid;
             right = mid - 1;
-        }
-        else
-        {
+        } else {
             // Not enough missing numbers yet.
             // Move to the right.
             left = mid + 1;
@@ -235,26 +213,19 @@ int binarySearchApproach(const vector<int> &arr, int k)
     return ans + k;
 }
 
-int main()
-{
-    vector<int> arr = {2, 3, 4, 7, 11, 12};
+int main() {
+    vector<int> arr = { 2, 3, 4, 7, 11, 12 };
 
     int k = 5;
 
     // Brute Force
-    cout << "Linear Search Answer : "
-         << linearSearchApproach(arr, k)
-         << endl;
+    cout << "Linear Search Answer : " << linearSearchApproach(arr, k) << endl;
 
     // Hash Set
-    cout << "Hash Set Answer      : "
-         << hashSetApproach(arr, k)
-         << endl;
+    cout << "Hash Set Answer      : " << hashSetApproach(arr, k) << endl;
 
     // Binary Search
-    cout << "Binary Search Answer : "
-         << binarySearchApproach(arr, k)
-         << endl;
+    cout << "Binary Search Answer : " << binarySearchApproach(arr, k) << endl;
 
     return 0;
 }
